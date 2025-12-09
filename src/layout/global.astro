@@ -1,0 +1,40 @@
+---
+import "@/ui/styles/global.css";
+
+import { Header } from "@/ui/shared/header";
+import { Footer } from "@/ui/shared/footer";
+
+import { config } from "@/lib/utils/config";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const language = Astro.currentLocale ?? "es-MX";
+
+const {
+  title = config.brand,
+  description = "Default description for my Astro site.",
+} = Astro.props;
+
+const seoTitle = title === config.brand ? title : `${title} | ${config.brand}`;
+---
+
+<html lang={language}>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    <title>{seoTitle}</title>
+  </head>
+  <body>
+    <Header />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

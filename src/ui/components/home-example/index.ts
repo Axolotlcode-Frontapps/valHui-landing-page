@@ -1,0 +1,1 @@
+export { default as HomeExample } from './home-example.astro';

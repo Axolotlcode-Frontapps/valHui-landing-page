@@ -1,0 +1,2 @@
+bun run build
+exec < /dev/tty && bunx gitmoji --hook $1

@@ -1,0 +1,83 @@
+{
+	"$schema": "https://biomejs.dev/schemas/2.3.8/schema.json",
+	"vcs": {
+		"enabled": false,
+		"clientKind": "git",
+		"useIgnoreFile": false
+	},
+	"files": {
+		"ignoreUnknown": false,
+		"includes": [
+			"**",
+			"!dist",
+			"!.astro",
+			"!**/test-results",
+			"!**/node_modules",
+			"!**/.output",
+			"!**/.vercel",
+			"!**/.netlify",
+			"!**/.wrangler",
+			"!**/build",
+			"!**/.DS_Store",
+			"!**/Thumbs.db",
+			"!**/.env",
+			"!**/.env.*",
+			"!**/vite.config.js.timestamp-*",
+			"!**/vite.config.ts.timestamp-*",
+			"!**/package-lock.json",
+			"!**/pnpm-lock.yaml",
+			"!**/yarn.lock",
+			"!**/bun.lock",
+			"!**/bun.lockb"
+		]
+	},
+	"formatter": {
+		"enabled": true,
+		"includes": ["src/**/*.{ts,tsx,css}"],
+		"formatWithErrors": false,
+		"attributePosition": "auto",
+		"indentStyle": "tab",
+		"indentWidth": 2,
+		"lineWidth": 80,
+		"lineEnding": "lf"
+	},
+	"linter": {
+		"enabled": true,
+		"includes": ["src/**/*.{ts,tsx,css}"],
+		"rules": {
+			"recommended": true,
+			"correctness": {
+				"noUnusedImports": "off",
+				"noUnusedVariables": "off"
+			},
+			"style": {
+				"useImportType": "off"
+			},
+			"suspicious": {
+				"noUnknownAtRules": "off"
+			},
+			"a11y": {
+				"useSemanticElements": "off"
+			}
+		}
+	},
+	"javascript": {
+		"formatter": {
+			"arrowParentheses": "always",
+			"bracketSameLine": false,
+			"bracketSpacing": true,
+			"jsxQuoteStyle": "single",
+			"quoteProperties": "asNeeded",
+			"semicolons": "always",
+			"trailingCommas": "all"
+		}
+	},
+	"assist": {
+		"enabled": true,
+		"actions": {
+			"source": {
+				"organizeImports": "on"
+			}
+		}
+	}
+}
