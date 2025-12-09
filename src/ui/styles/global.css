@@ -136,3 +136,98 @@
 html {
   scroll-behavior: smooth;
 }
+
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInFromTop {
+  from {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInFromBottom {
+  from {
+    opacity: 0;
+    transform: translateY(200px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInFromBottomSm {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-200px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(200px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.strategies__cards > * {
+  opacity: 0;
+  transform: translateY(50px);
+}
+
+
+.fadeIn {
+  animation: fadeIn 1s ease-in-out forwards;
+}
+
+.fadeInFromTop {
+  animation: fadeInFromTop 1s ease-in-out forwards;
+}
+
+.fadeInFromBottom {
+  animation: fadeInFromBottom 1s ease-in-out forwards;
+}
+
+.fadeInFromBottomSm {
+  animation: fadeInFromBottomSm 1s ease-in-out forwards;
+}
+
+.fadeInFromLeft {
+  animation: fadeInFromLeft 1s ease-in-out forwards;
+}
+
+.fadeInFromRight {
+  animation: fadeInFromRight 1s ease-in-out forwards;
+}
