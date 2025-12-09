@@ -1,3 +1,3 @@
 export const config = {
-  brand: "My Astro Site",
+	brand: "My Astro Site",
 };
