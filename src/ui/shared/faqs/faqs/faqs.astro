@@ -1,0 +1,161 @@
+---
+import Coment from "@/assets/icons/coment.astro";
+import AccordionFaqs from "@/ui/shared/faqs/accordion-faqs/accordion-faqs.astro";
+
+const data = [
+  {
+    question: "¿Qué tipos de negocios pueden alquilar un espacio en ValHui?",
+    answer:
+      "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    ordered: false,
+    open: true,
+  },
+  {
+    question: "¿Cómo puedo alquilar un espacio para mi consultorio médico?",
+    answer:
+      "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    ordered: false,
+    open: false,
+  },
+  {
+    question: "¿Qué incluye el contrato de alquiler?",
+    answer:
+      "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    ordered: false,
+    open: false,
+  },
+  {
+    question: "¿Cuánto duran los contratos de alquiler?",
+    answer:
+      "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    ordered: false,
+    open: false,
+  },
+  {
+    question: "¿Ofrecen apoyo de marketing para inquilinos?",
+    answer:
+      "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    ordered: false,
+    open: false,
+  },
+  {
+    question: "¿Puedo organizar eventos en la terraza?",
+    answer:
+      "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    ordered: false,
+    open: false,
+  },
+  {
+    question: "¿Cómo puedo agendar una visita para ver los espacios disponibles?",
+    answer:
+      "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    ordered: false,
+    open: false,
+  },
+];
+
+---
+
+<section class="section">
+  <div class="section__container questions-section">
+    <h2
+      class="title text-[36px] max-w-[1000] leading-10 md:text-5xl md:leading-14 text-[#101828] lg:max-w-[800px] text-center inline-block mx-auto font-bold mt-3"
+    >
+      Preguntas Frecuentes 
+    </h2>
+
+    <p
+      class="description mx-auto font-normal text-[18px] mb-12 mt-4 text-center text-[#717182]"
+    >
+     Encuentra aquí las respuestas a las consultas más frecuentes sobre nuestros espacios en renta. ¿Tu duda no aparece? Contáctanos.
+    </p>
+    <div class="accordions flex flex-col divide-y divide-[#717182] ">
+      {data.map((item) => <AccordionFaqs {...item} />)}
+    </div>
+    <div class="block md:hidden text-center mt-10">
+      <p class="text-[#4A5565] text-[16px] mb-6">¿Aún tienes preguntas?</p>
+      <div class="text-center mt-6">
+        <button
+          class="flex items-center justify-center gap-2 bg-[#452ADA] text-white text-[16px] font-normal px-6 py-3 w-fit mx-auto rounded-lg"
+        >
+          <Coment class="w-5 h-5" />
+          Contactar con soporte
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  @reference "@/ui/styles/global.css";
+  .section {
+    @apply w-full text-[#101828];
+  }
+  .questions-section {
+    @apply w-full py-10 lg:grid grid-cols-1 max-w-4xl;
+  }
+</style>
+
+<!-- <script>
+  addEventListener("DOMContentLoaded", () => {
+    const tag = document.querySelector(".tag");
+    const title = document.querySelector(".title");
+    const description = document.querySelector(".description");
+    const cards = document.querySelectorAll(".accordions > *");
+
+    (tag as HTMLElement).style.opacity = "0";
+    (title as HTMLElement).style.opacity = "0";
+    cards.forEach((item) => {
+      (item as HTMLElement).style.opacity = "0";
+    });
+
+    const tagObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry) return;
+        const isVisible = entry.isIntersecting;
+        isVisible && tag ? tag.classList.add("fadeInFromTop") : null;
+      },
+      { threshold: 0 },
+    );
+    tag && tagObserver.observe(tag);
+
+    const titleObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry) return;
+        const isVisible = entry.isIntersecting;
+        isVisible && title ? title.classList.add("fadeInFromTop") : null;
+      },
+      { threshold: 0 },
+    );
+    title && titleObserver.observe(title);
+
+    const descriptionObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry) return;
+        const isVisible = entry.isIntersecting;
+        isVisible && description
+          ? description.classList.add("fadeInFromTop")
+          : null;
+      },
+      { threshold: 0 },
+    );
+    description && descriptionObserver.observe(description);
+
+    cards.forEach((item, index) => {
+      const itemObserver = new IntersectionObserver(
+        ([entry]) => {
+          if (!entry) return;
+          const isVisible = entry.isIntersecting;
+          if (isVisible) {
+            setTimeout(() => {
+              item.classList.add("fadeInFromBottom");
+            }, index * 180);
+            itemObserver.unobserve(item);
+          }
+        },
+        { threshold: 0 },
+      );
+      itemObserver.observe(item);
+    });
+  });
+</script> -->
