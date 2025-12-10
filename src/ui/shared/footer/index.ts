@@ -1,1 +1,1 @@
-export { default as Footer } from './footer.astro';
+export { default as Footer } from "./footer.astro";

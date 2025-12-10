@@ -1,1 +1,1 @@
-export { default as ServicesExample } from './services-example.astro';
+export { default as ServicesExample } from "./services-example.astro";
