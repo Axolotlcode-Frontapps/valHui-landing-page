@@ -1,17 +1,137 @@
+---
+import FacebookIcon from "@/assets/icons/facebook.svg";
+import InstagramIcon from "@/assets/icons/instagram.svg";
+import LinkedInIcon from "@/assets/icons/linkedin.svg";
+import TwitterIcon from "@/assets/icons/twitter.svg";
+import ValhuiIcon from "@/assets/icons/valhui-white.svg";
+import {
+  getContactLinks,
+  getLegalsLinks,
+  getMoreLinks,
+  getQuickLinks,
+} from "@/lib/utils/links";
+
+import { LinkList } from "@/ui/shared/link-list";
+
+const quickLinks = getQuickLinks();
+const moreLinks = getMoreLinks();
+const contactLinks = getContactLinks();
+const legalsLinks = getLegalsLinks();
+
+const socialLinks = [
+  {
+    label: "Facebook",
+    icon: FacebookIcon,
+    link: "",
+  },
+  {
+    label: "Twitter",
+    icon: TwitterIcon,
+    link: "",
+  },
+  {
+    label: "Instagram",
+    icon: InstagramIcon,
+    link: "",
+  },
+  {
+    label: "LinkedIn",
+    icon: LinkedInIcon,
+    link: "",
+  },
+];
+---
+
 <footer class="section footer">
-  <section class="section__container footer__container">
-    <p>© 2024 My Astro Site. All rights reserved.</p>
-  </section>
+  <div class="section__container footer__container">
+    <div class="footer__links">
+      <div class="footer__about">
+        <ValhuiIcon class="w-full max-w-[137px]" />
+        <p class="footer__description">
+          More than a mall, ValHui is a complete ecosystem for businesses,
+          medical professionals, and dining experiences. Join our thriving
+          community with built-in marketing support.
+        </p>
+        <div class="footer__socials">
+          { socialLinks.map(({ label, icon: Icon, link }) => (
+            <a href={link} aria-label={label} target="_blank"
+              class="flex w-fit bg-[#FFFFFF0D] p-3  rounded-[10px]"
+            >
+              {Icon ? <Icon /> : null}
+            </a> 
+          ))}
+        </div>
+      </div>
+      <LinkList
+        title="Quick Links"
+        items={quickLinks}
+        wrapClass="text-center md:text-left"
+        class="grid grid-cols-1 text-[#FFFFFFB2] hover:text-secondary gap-y-2 mb-5 justify-items-center md:justify-items-start "
+      />
+      <LinkList
+        title="More Links"
+        items={moreLinks}
+        wrapClass="text-center md:text-left"
+        class="grid grid-cols-1 text-[#FFFFFFB2] hover:text-secondary gap-y-2 mb-5 justify-items-center md:justify-items-start "
+      />
+      <LinkList
+        title="Contact Us"
+        items={contactLinks}
+        wrapClass="text-center md:text-left"
+        class="grid grid-cols-1 text-[#FFFFFFB2] hover:text-secondary gap-y-2 mb-5 justify-items-center md:justify-items-start "
+      />
+    </div>
+    <div class="footer__rights" >
+      <p class="w-fit"> © {new Date().getFullYear()} ValHui Mall. All rights reserved. </p>
+      <div class="w-fit flex gap-6">
+        {legalsLinks.map(({link, label}) => (
+          <a href={link} class="text-sm text-[#FFFFFF99]" >{label}</a>
+        ))}
+      </div>
+    </div>
+  </div>
 </footer>
 
 <style>
   @reference "@/ui/styles/global.css";
 
   .footer {
-    @apply bg-gray-800 text-white py-6 min-h-20;
+    @apply w-full px-4 pb-5 pt-16 bg-[#0F4571] text-[#D1D5DB];
   }
-
   .footer__container {
-    @apply flex justify-center items-center text-xs text-muted;
+    @apply w-full justify-items-center md:justify-items-normal max-w-[1256px] divide-y divide-[#FFFFFF1A];
+  }
+  .footer__links {
+    @apply grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 pb-7 items-center justify-items-center md:items-start md:justify-items-start ;
+  }
+  .footer__description {
+    @apply w-full my-4 text-sm text-[#FFFFFFB2] text-center md:text-left; 
+  }
+  .footer__about {
+    @apply w-full flex flex-col items-center justify-items-center md:items-start md:justify-items-start;
+  }
+  .footer__socials {
+    @apply w-full max-w-[264px] grid grid-cols-4 gap-4;
+  }
+  .footer__rights {
+    @apply w-full flex flex-col md:flex-row md:justify-between gap-4 mt-8 mb-11 items-center text-center md:text-left text-[#FFFFFF99];
   }
 </style>
+
+<script>
+  addEventListener("DOMContentLoaded", () => {
+    const footerAnim = document.querySelector(".footer__container");
+
+    (footerAnim as HTMLElement).style.opacity = "0";
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry) return;
+        const isVisible = entry.isIntersecting;
+        isVisible && footerAnim ? footerAnim.classList.add("fadeIn") : null;
+      },
+      { threshold: 0 }
+    );
+    footerAnim ? observer.observe(footerAnim) : null;
+  });
+</script>
