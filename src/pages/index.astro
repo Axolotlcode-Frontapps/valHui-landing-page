@@ -1,8 +1,15 @@
 ---
 import { Layout } from "@/layout";
+import HomeCta from "@/ui/components/home-cta/home-cta.astro";
 import { HomeExample } from "@/ui/components/home-example";
+
+const ctaData = {
+	title: "¿Listo para rentar en ValHui?",
+	text: "Aprovecha espacios en renta con ubicación estratégica, visibilidad garantizada y beneficios reales para tu marca. Locales, oficinas, consultorios y terrazas disponibles hoy mismo."
+}
 ---
 
 <Layout>
 	<HomeExample />
+	<HomeCta {...ctaData}/>
 </Layout>
