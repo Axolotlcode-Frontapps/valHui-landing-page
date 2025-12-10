@@ -1,6 +1,33 @@
+---
+import { Image } from "astro:assets";
+
+import { Navigation } from "./navigation";
+import { Button } from "../button";
+
+import LogoApp from "@/assets/images/valhui.png";
+
+const links = [
+  { name: "Inicio", href: "#" },
+  { name: "Negocios", href: "#" },
+  { name: "Experiencia", href: "#" },
+  { name: "Ubicación", href: "#" },
+  { name: "FAQ", href: "#" },
+  { name: "Contacto", href: "#" },
+];
+---
+
 <header class="section header">
   <section class="section__container header__container">
-    Contenido del header
+    <div class="min-w-[150px] flex">
+      <a href="/" class="max-w-12" title="Valhui | Inicio">
+        <Image src={LogoApp} alt="ValHui Logo" class="size-12" />
+        <span class="sr-only">ValHui - Home</span>
+      </a>
+    </div>
+
+    <Navigation client:load {links}>
+      <Button className="font-bold h-12"> Rentar un espacio </Button>
+    </Navigation>
   </section>
 </header>
 
@@ -8,10 +35,10 @@
   @reference "@/ui/styles/global.css";
 
   .header {
-    @apply bg-blue-600 text-white;
+    @apply bg-white border border-[#E5E7EB] shadow-[0_1px_2px_0px_#0000000D] relative z-20;
   }
 
   .header__container {
-    @apply h-18 flex justify-center items-center font-semibold;
+    @apply h-20 flex justify-between items-center font-bold;
   }
 </style>

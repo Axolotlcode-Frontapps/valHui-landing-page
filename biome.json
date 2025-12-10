@@ -73,11 +73,15 @@
 		}
 	},
 	"assist": {
-		"enabled": true,
-		"actions": {
-			"source": {
-				"organizeImports": "on"
-			}
+		"enabled": false
+	},
+	"css": {
+		"formatter": {
+			"enabled": true,
+			"indentWidth": 2
+		},
+		"parser": {
+			"tailwindDirectives": true
 		}
 	}
 }
