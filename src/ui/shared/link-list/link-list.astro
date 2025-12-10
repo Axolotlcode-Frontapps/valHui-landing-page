@@ -1,0 +1,79 @@
+---
+import { ChevronDown } from "lucide-react";
+
+interface Props {
+  title: string;
+  items: {
+    label: string;
+    link?: string;
+    items?: {
+      label: string;
+      link: string;
+    }[];
+  }[];
+  wrapClass?: string;
+  class?: string;
+  linkClass?: string;
+}
+
+const { title, wrapClass, items, class: className } = Astro.props;
+---
+
+<nav class=`links-list ${wrapClass}`>
+  <h2 class="links-list__title">{title}</h2>
+  <div class={`links-list__items ${className}`}>
+    {
+      items.map((item) =>
+        item.items?.length ? (
+          <div class="links-list__menu group relative">
+            <span class={`links-list__link cursor-pointer`}>
+              {item.label}
+              <ChevronDown className="size-5 group-hover:rotate-180 transition-all duration-200 ease-in-out" />
+            </span>
+            <div class="links-list__submenu ">
+              {item.items.map((sub) => (
+                <a href={sub.link} class="links-list__link rounded-[6px]">
+                  {sub.label}
+                </a>
+              ))}
+            </div>
+          </div>
+        ) : item.link ? (
+          <a href={item.link} class={`links-list__link`}>
+            {item.label}
+          </a>
+        ) : (
+          <span class="links-list__link">{item.label}</span>
+        ),
+      )
+    }
+  </div>
+</nav>
+
+<style>
+  @reference "@/ui/styles/global.css";
+  .links-list {
+    @apply w-full flex flex-col gap-4 max-w-[150px];
+  }
+  .links-list__title {
+    @apply text-base text-white! ;
+  }
+  .links-list__items {
+    @apply w-full;
+  }
+  .links-list__link {
+    @apply flex gap-2 text-sm items-center leading-[150%] text-[#FFFFFFB2] hover:text-secondary rounded-md;
+  }
+  .links-list__menu {
+    @apply relative;
+  }
+
+  .links-list__submenu {
+    @apply absolute left-23 top-0 md:left-24 md:-top-16 hidden group-hover:block bg-accent-foreground border border-gray-100 shadow-md z-10 rounded-md p-2;
+  }
+
+  .links-list__menu:hover .links-list__submenu,
+  .links-list__menu:focus-within .links-list__submenu {
+    @apply block;
+  }
+</style>
