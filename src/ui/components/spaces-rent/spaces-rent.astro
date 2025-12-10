@@ -1,0 +1,105 @@
+---
+import HornIcon from "@/assets/icons/horn.svg"
+import PointIcon from "@/assets/icons/point.svg"
+import { CardsRent } from "../spaces-cards";
+
+const data = [
+  {
+    icon: HornIcon,
+    title: "Marketing y exposición",
+    point: PointIcon,
+    list: [
+      {
+        text: "Campañas promocionales (Anuncios pagados en redes y Google Ads)",
+      },
+      {
+        text: "Exposición en redes (Creación de contenido, diseño y programación)",
+      },
+      {
+        text: "Presencia digital (Página web + directorios locales digitales)",
+      },
+      {
+        text: "Soporte creativo (Copys, diseño gráfico y estrategia de marca)",
+      },
+    ],  
+  },
+    {
+    icon: HornIcon,
+    title: "Ubicación Estratégica ",
+    point: PointIcon,
+    list: [
+      {
+        text: "A solo dos cuadras de Av Paseo de la Reforma CDMX",
+      },
+      {
+        text: "Zona activa con perfil ejecutivo y emprendedor",
+      },
+      {
+        text: "Transporte público y vialidades conectadas",
+      },
+      {
+        text: "Zona segura, activa y en constante movimiento",
+      },
+    ],  
+  },
+    {
+    icon: HornIcon,
+    title: "Servicios Incluidos",
+    point: PointIcon,
+    list: [
+      {
+        text: "Limpieza, vigilancia 24/7 y mantenimiento",
+      },
+      {
+        text: "Sin cuotas adicionales",
+      },
+      {
+        text: "RFC en trámite permitido",
+      },
+      {
+        text: "Trámite de renta simple y rápido",
+      },
+    ],  
+  },     
+];
+---
+
+<section class="section spaces-rent">
+  <section class="section__container spaces-rent__container">
+    <div class="spaces-rent__information">
+      <h1 class="spaces-rent__title">Renta un espacio y vive una experiencia completa</h1>
+      <h2 class="spaces-rent__subtitle">En ValHui no solo obtienes un espacio: accedes a visibilidad, ubicación privilegiada y servicios que te permiten operar sin complicaciones.</h2>
+    </div>
+    <div class="spaces-rent__cards">
+      {data.map((card) => <CardsRent {...card} />)}
+    </div>
+  </section>
+</section>
+
+<style>
+  @reference "@/ui/styles/global.css";
+
+  .spaces-rent {
+    @apply bg-white;
+  }
+
+  .spaces-rent__container {
+    @apply py-16;
+  }
+
+  .spaces-rent__information{
+    @apply text-center mb-[60px];
+  }
+
+  .spaces-rent__title{
+    @apply text-4xl text-[#0A0A0A] font-bold mb-[16px];
+  }
+
+  .spaces-rent__subtitle{
+    @apply text-lg text-[#717182] font-normal;
+  }
+
+  .spaces-rent__cards{
+    @apply grid grid-cols-1 lg:grid-cols-3 gap-[24px];
+  }
+</style>
