@@ -1,1 +1,1 @@
-export { default as HomeCta } from "./home-cta";
+export { default as HomeCta } from "./home-cta.astro";

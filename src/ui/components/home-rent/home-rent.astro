@@ -1,0 +1,60 @@
+---
+import { Image } from "astro:assets";
+import Computer from "@/assets/icons/computer.astro";
+import Display from "@/assets/icons/display.astro";
+import Focus from "@/assets/icons/focus.astro";
+import Horn from "@/assets/icons/horn.astro";
+import Aisle from "@/assets/images/aisle.png";
+---
+
+<section class="section rent">
+  <div class="section__container rent__container">
+    <Image class="image__rent" src={Aisle} alt="Imagen de pasillo" />
+
+    <div class="rent__icons">
+      <div class="rent__item">
+        <Horn class="icon" />
+        <span>Campañas promocionales</span>
+      </div>
+      <div class="rent__item">
+        <Display class="icon" />
+        <span>Exposición en redes</span>
+      </div>
+      <div class="rent__item">
+        <Computer class="icon" />
+        <span>Presencia digital</span>
+      </div>
+      <div class="rent__item">
+        <Focus class="icon" />
+        <span>Soporte creativo</span>
+      </div>
+
+    </div>
+    <button class="rent__button">Descubra las opciones de alquiler</button>
+  </div>
+</section>
+
+<style>
+    @reference "@/ui/styles/global.css";
+
+    .rent {
+      @apply w-full bg-[#7148EC0D] ;
+    }
+    .rent__container {
+      @apply  gap-8 grid md:grid-cols-2 md:gap-10 items-center w-full max-w-[992px]; 
+    }
+
+    .image__rent {
+      @apply rounded-[10px] mask-size-[100%_100%] mx-auto  mt-10; 
+    }
+
+    .rent__item {
+      @apply flex items-center gap-7  rounded-xl py-2 px-4 font-bold text-[20px] ; 
+    }
+    .icon {
+      @apply w-7 h-7 fill-[#7148EC] ;
+    }
+    .rent__button {
+      @apply bg-[#7148EC] md:col-span-2 w-fit rounded-xl text-white py-2.5 px-4 text-[14px] font-bold items-center mx-auto mb-10;
+    }
+</style>
