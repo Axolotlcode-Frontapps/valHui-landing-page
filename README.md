@@ -1,6 +1,7 @@
-# Astro Template
+<img src="./src/assets/images/valhui.png" alt="Valhui" width="100">
 
-Plantilla de Astro con React, TailwindCSS, shadcn/ui y herramientas de desarrollo modernas.
+# Valhui Landing page
+Empresa encargada de proporcionar espacios comexrciales en renta en México
 
 ## Requisitos
 - Node.js >= 22
@@ -9,8 +10,8 @@ Plantilla de Astro con React, TailwindCSS, shadcn/ui y herramientas de desarroll
 ## Instalación
 ```bash
 # Clonar el repositorio
-git clone <repo-url>
-cd astro-template
+git clone https://github.com/Axolotlcode-Frontapps/valHui-landing-page
+cd valHui-landing-page
 
 # Instalar dependencias
 bun install
