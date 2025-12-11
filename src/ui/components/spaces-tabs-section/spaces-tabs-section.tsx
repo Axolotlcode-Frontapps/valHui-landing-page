@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 interface data {
 	images: {
 		image: ImageMetadata;
+		href?: string;
 	}[];
 	spaces: {
 		title: string;
@@ -24,31 +25,39 @@ interface Props {
 export const TabsSection = ({ data }: Props) => {
 	const listRef = useRef<HTMLDivElement>(null);
 	const textRef = useRef<HTMLDivElement>(null);
-	const tabDataRef = useRef<HTMLDivElement>(null);
+	const tabDataRefs = useRef<HTMLDivElement[]>([]);
 
 	useEffect(() => {
 		const tabsList = listRef.current?.querySelectorAll(":scope > *") || [];
 		const text = textRef.current;
-		const tabData = tabDataRef.current;
+		const tabData = tabDataRefs.current;
 
 		if (!tabData || !text) return;
 
-		tabData.style.opacity = "0";
+		tabData.forEach((item) => {
+			(item as HTMLElement).style.opacity = "0";
+		});
+
 		text.style.opacity = "0";
 
 		tabsList.forEach((item) => {
 			(item as HTMLElement).style.opacity = "0";
 		});
 
-		const tabDataObserver = new IntersectionObserver(
-			([entry]) => {
-				if (entry.isIntersecting) {
-					tabData.classList.add("fadeInFromBottom");
-				}
-			},
-			{ threshold: 0 },
-		);
-		tabDataObserver.observe(tabData);
+		tabData.forEach((item, index) => {
+			const itemObserver = new IntersectionObserver(
+				([entry]) => {
+					if (entry.isIntersecting) {
+						setTimeout(() => {
+							item.classList.add("fadeInFromBottom");
+						}, index * 180);
+						itemObserver.unobserve(item);
+					}
+				},
+				{ threshold: 0 },
+			);
+			itemObserver.observe(item);
+		});
 
 		const textObserver = new IntersectionObserver(
 			([entry]) => {
@@ -109,20 +118,22 @@ export const TabsSection = ({ data }: Props) => {
 
 			{data.map((item, index) => (
 				<TabsContent
-					ref={tabDataRef}
+					ref={(item) => {
+						if (item) tabDataRefs.current[index] = item;
+					}}
 					key={index}
 					value={item.label}
-					className='tab-data w-full max-w-[1082px] grid grid-cols-1 md:grid-cols-[5fr_4fr] items-center justify-items-center gap-[71px] bg-white pt-8 pb-[68px] px-8 rounded-[10px] mt-16 md:mt-20'
+					className='tab-data w-full max-w-[1082px] grid grid-cols-1 md:grid-cols-[5fr_4fr] items-center justify-items-center gap-[71px] bg-white pt-8 pb-[68px] px-8 rounded-[10px] my-16 md:my-20'
 				>
 					<div className='w-fit flex flex-col md:flex-row gap-10 md:gap-0 order-2 md:order-1'>
 						{item.data.images.map((item, index) => (
 							<article key={index} className='w-full max-w-[280px]'>
 								<img src={item.image.src} alt='drawing' />
 								<a
-									href='/'
+									href={item.href ? item.href : "/"}
 									target='_blank'
 									rel='noopener noreferrer'
-									className='block w-full max-w-[168px] text-sm text-white leading-5 tracking-[-0.15px] font-bold font-Nova text-center bg-[#7148EC] rounded-xl py-2.5 mt-[9px] mx-auto'
+									className='block w-full max-w-[168px] text-sm text-white leading-5 tracking-[-0.15px] font-bold font-Nova text-center bg-[#7148EC] rounded-xl py-2.5 mt-[9px] mx-auto hover:scale-105 transition-all duration-200 ease-in-out active:scale-95'
 								>
 									Descargar plano
 								</a>
