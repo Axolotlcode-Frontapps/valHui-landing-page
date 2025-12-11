@@ -2,7 +2,7 @@
 import RentOne from "@/assets/icons/rentOne.png";
 import RentTwo from "@/assets/icons/rentTwo.png";
 import RentThree from "@/assets/icons/rentThree.png";
-import CardRent from "@/ui/shared/cardRent.astro";
+import CardRent from "./card-rent.astro";
 
 const data = {
   cardRentOne: {
@@ -24,8 +24,8 @@ const data = {
 ---
 
 <section class="section home-Rent">
-  <div class="home-Rent__container">
-    <div class="home-Rent__title">
+  <div class="section__container home-Rent__container">
+    <div class="home-Rent__info">
       <h1 class="home-Rent__title">
         Renta con propósito, crece con resultados
       </h1>
@@ -35,7 +35,7 @@ const data = {
         negocio.
       </p>
     </div>
-    <div class="home-Rent__container">
+    <div class="home-Rent__cards">
       <CardRent {...data.cardRentOne} />
       <CardRent {...data.cardRentTwo} />
       <CardRent {...data.cardRentThree} />
@@ -47,22 +47,26 @@ const data = {
   @reference '@/ui/styles/global.css';
 
   .home-Rent {
-    @apply w-full py-16 bg-[#FFFF];
-  }
-
-  .home-Rent__section {
-    @apply max-w-full px-6 bg-[#F5F7FA];
-  }
-
-  .home-Rent__title {
-    @apply w-full text-center font-bold text-[#0A0A0A] text-4xl p-4;
-  }
-
-  .home-Rent__text {
-    @apply w-full h-14 text-center text-[#717182] text-lg ; 
+    @apply w-full py-24 lg:py-30 bg-[#FFFF];
   }
 
   .home-Rent__container {
-    @apply w-full h-full grid grid-cols-3 md:grid-cols-1 gap-4 mx-6 text-center;
+    @apply flex flex-col items-center justify-center gap-8;
+  }
+
+  .home-Rent__info {
+    @apply flex flex-col items-center justify-center gap-4;
+  }
+
+  .home-Rent__title {
+    @apply text-center font-bold text-[#0A0A0A] text-4xl;
+  }
+
+  .home-Rent__text {
+    @apply text-center text-[#717182] text-lg max-w-2xl mx-auto tracking-[-0.44px] font-normal mb-7;
+  }
+
+  .home-Rent__cards {
+    @apply w-full grid grid-cols-1 md:grid-cols-3 gap-6;
   }
 </style>

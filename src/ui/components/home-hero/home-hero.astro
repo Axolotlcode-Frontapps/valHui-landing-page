@@ -1,0 +1,76 @@
+---
+import { buttonVariants } from "@/ui/shared/button";
+
+import HomeHeroImage from "@/assets/images/hero-home.png";
+---
+
+<section class="section hero-home">
+  <div class="hero-home__overlay"></div>
+  <div class="section__container hero-home__container">
+    <div class="hero-home__info">
+      <h1 class="hero-home__title">Espacios que impulsan tu negocio</h1>
+      <p class="hero-home__description">
+        Tu espacio ideal te está esperando en Reforma. Renta con ValHui y accede
+        a oficinas, locales y terrazas diseñadas para crecer con soporte de
+        marketing y visibilidad garantizada.
+      </p>
+      <div class="hero-home__buttons">
+        <a
+          href="/"
+          class={buttonVariants({
+            className: "h-12",
+          })}
+        >
+          Renta un espacio
+        </a>
+        <a
+          href="/"
+          class={buttonVariants({
+            variant: "ghost",
+            className:
+              "h-12 bg-[#FFFFFF1A] hover:bg-white/30 border border-[#FFFFFF4D] hover:text-white",
+          })}
+        >
+          Agendar una visita
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style
+  define:vars={{
+    bgImage: `url(${HomeHeroImage.src})`,
+  }}
+>
+  @reference "@/ui/styles/global.css";
+
+  .hero-home {
+    background-image: var(--bgImage);
+    @apply bg-cover bg-center relative;
+  }
+
+  .hero-home__overlay {
+    @apply absolute inset-0 bg-linear-to-r from-black/20 via-black/15 to-black/10 z-0;
+  }
+
+  .hero-home__container {
+    @apply min-h-[calc(100dvh-80px)] flex flex-col justify-center md:justify-end relative z-10;
+  }
+
+  .hero-home__info {
+    @apply flex flex-col gap-8 text-white max-w-[764px] md:mb-28;
+  }
+
+  .hero-home__title {
+    @apply font-bold text-5xl lg:text-6xl tracking-[0.26px];
+  }
+
+  .hero-home__description {
+    @apply text-lg lg:text-xl tracking-[-0.45px] text-white/90 font-normal max-w-[664px];
+  }
+
+  .hero-home__buttons {
+    @apply flex flex-col md:flex-row gap-4;
+  }
+</style>

@@ -1,1 +1,1 @@
-export { default as HomeRent } from "./homeRent.astro";
+export { default as HomeRent } from "./home-rent.astro";
