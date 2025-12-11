@@ -1,0 +1,122 @@
+---
+import { TabsSection } from "../spaces-tabs-section/spaces-tabs-section";
+import LocalsFirst from "@/assets/images/locals-first.png";
+import LocalsSecond from "@/assets/images/locals-second.png";
+import ConsultoryFirst from "@/assets/images/consultory-first.png";
+import ConsultorySecond from "@/assets/images/consultory-second.png";
+import TerraceFirst from "@/assets/images/terrace-first.png";
+
+const localsData = {
+  images: [
+    { image: LocalsFirst }, { image: LocalsSecond }
+  ],
+  spaces: [
+    {
+      title: "Áreas Piso 01",
+      locals: [
+        { name: "Local de trabajo 01", space: "22.90m²"},
+        { name: "Local de trabajo 02", space: "15.09m²"},
+        { name: "Local de trabajo 03", space: "15.02m²"},
+        { name: "Local de trabajo 04", space: "15.09m²"},
+        { name: "Local de trabajo 05", space: "16.25m²"},
+        { name: "Local de trabajo 06", space: "14.64m²"},
+        { name: "Local de trabajo 07", space: "14.83m²"},
+        { name: "Local de trabajo 08", space: "14.91m²"},
+        { name: "Local de trabajo 09", space: "22.21m²"}
+      ]
+    },
+    {
+      title: "Áreas Piso 02",
+      locals: [
+        { name: "Local de trabajo 01", space: "12.04m²"},
+        { name: "Local de trabajo 02", space: "7.74m²"},
+        { name: "Local de trabajo 03", space: "13.08m²"},
+        { name: "Local de trabajo 04", space: "13.05m²"},
+        { name: "Local de trabajo 05", space: "15.73m²"},
+        { name: "Local de trabajo 06", space: "12.03m²"},
+        { name: "Local de trabajo 07", space: "12.00m²"},
+        { name: "Local de trabajo 08", space: "11.85m²"},
+      ]
+    }
+  ],
+};
+
+const consultoryData = {
+  images: [
+    { image: ConsultoryFirst }, { image: ConsultorySecond }
+  ],
+  spaces: [
+    {
+      title: "Áreas Piso 03",
+      locals: [
+        { name: "Local de trabajo 01", space: "11.77m²"},
+        { name: "Local de trabajo 02", space: "8.45m²"},
+        { name: "Local de trabajo 03", space: "8.47m²"},
+        { name: "Local de trabajo 04", space: "8.28m²"},
+        { name: "Local de trabajo 05", space: "9.19m²"},
+        { name: "Local de trabajo 06", space: "7.39m²"},
+        { name: "Local de trabajo 07", space: "8.62m²"},
+        { name: "Local de trabajo 08", space: "7.81m²"},
+        { name: "Local de trabajo 09", space: "11.85m²"}
+      ]
+    },
+    {
+      title: "Áreas Piso 04",
+      locals: [
+        { name: "Local de trabajo 01", space: "8.61m²"},
+        { name: "Local de trabajo 02", space: "8.55m²"},
+        { name: "Local de trabajo 03", space: "8.79m²"},
+        { name: "Local de trabajo 04", space: "8.18m²"},
+        { name: "Local de trabajo 05", space: "12.04m²"},
+        { name: "Local de trabajo 06", space: "7.39m²"},
+        { name: "Local de trabajo 07", space: "8.62m²"},
+        { name: "Local de trabajo 08", space: "7.81m²"},
+        { name: "Local de trabajo 09", space: "11.85m²"}
+      ]
+    }
+  ],
+};
+
+const terraceData = {
+  images: [
+    { image: TerraceFirst },
+  ],
+  spaces: [
+    {
+      title: "Áreas Piso 05",
+      locals: [
+        { name: "Oficina administración", space: "16.40m²"},
+        { name: "Oficina 01", space: "8.61m²"},
+        { name: "Oficina 02", space: "8.55m²"},
+        { name: "Oficina 03", space: "11.17m²"},
+        { name: "Sala de juntas", space: "23.88m²"},
+        { name: "Terraza", space: "53.72m²"},
+      ]
+    },
+  ],
+};
+
+
+const data = [localsData, consultoryData, terraceData];
+const tabsData = ["Locales Comerciales", "Consultorios", "Restaurant/terraza Oficinas PYME"].map((item, index) => ({
+  label: `${item}`,
+  data: data[index]
+}));
+---
+
+<section class="tab-section">
+    <div class="tab-section__container">
+      <TabsSection client:only data={tabsData} />
+    </div>
+</section>
+
+<style>
+  @reference '@/ui/styles/global.css';
+  .tab-section {
+    @apply w-full bg-[#7148EC1A];
+  }
+  .tab-section__container {
+    @apply w-full ;
+  }
+
+</style>
