@@ -49,3 +49,43 @@ import SpacesHeroImage from "@/assets/images/hero-spaces.png";
     @apply text-lg lg:text-xl tracking-[-0.45px] text-white/90 font-normal max-w-[664px] mx-auto;
   }
 </style>
+
+<script>
+  addEventListener("DOMContentLoaded", () => {
+
+    const data = document.querySelector(".hero-spaces");
+    const points = document.querySelectorAll(".hero-spaces__info > *");
+
+    (data as HTMLElement).style.opacity = "0";
+    points.forEach((item) => {
+      (item as HTMLElement).style.opacity = "0";
+    });
+
+    const dataObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry) return;
+        const isVisible = entry.isIntersecting;
+        isVisible && data ? data.classList.add("fadeIn") : null;
+      },
+      { threshold: 0 },
+    );
+    data && dataObserver.observe(data);
+
+    points.forEach((item, index) => {
+      const itemObserver = new IntersectionObserver(
+        ([entry]) => {
+          if (!entry) return;
+          const isVisible = entry.isIntersecting;
+          if (isVisible) {
+            setTimeout(() => {
+              item.classList.add("fadeInFromBottom");
+            }, index * 180);
+            itemObserver.unobserve(item);
+          }
+        },
+        { threshold: 0 },
+      );
+      itemObserver.observe(item);
+    });
+  });
+</script>

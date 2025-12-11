@@ -65,7 +65,7 @@ const data = [
 ---
 
 <section class="section spaces-rent">
-  <section class="section__container spaces-rent__container">
+  <div class="section__container spaces-rent__container">
     <div class="spaces-rent__information">
       <h1 class="spaces-rent__title">Renta un espacio y vive una experiencia completa</h1>
       <h2 class="spaces-rent__subtitle">En ValHui no solo obtienes un espacio: accedes a visibilidad, ubicación privilegiada y servicios que te permiten operar sin complicaciones.</h2>
@@ -73,7 +73,7 @@ const data = [
     <div class="spaces-rent__cards">
       {data.map((card) => <CardsRent {...card} />)}
     </div>
-  </section>
+  </div>
 </section>
 
 <style>
@@ -92,7 +92,7 @@ const data = [
   }
 
   .spaces-rent__title{
-    @apply text-4xl text-[#0A0A0A] font-bold mb-[16px];
+    @apply text-4xl text-[#0A0A0A] font-bold mb-4;
   }
 
   .spaces-rent__subtitle{
@@ -100,6 +100,47 @@ const data = [
   }
 
   .spaces-rent__cards{
-    @apply grid grid-cols-1 lg:grid-cols-3 gap-[24px];
+    @apply grid grid-cols-1 lg:grid-cols-3 gap-6;
   }
 </style>
+
+
+<script>
+  addEventListener("DOMContentLoaded", () => {
+
+    const data = document.querySelector(".spaces-rent__information");
+    const points = document.querySelectorAll(".spaces-rent__cards > *");
+
+    (data as HTMLElement).style.opacity = "0";
+    points.forEach((item) => {
+      (item as HTMLElement).style.opacity = "0";
+    });
+
+    const dataObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry) return;
+        const isVisible = entry.isIntersecting;
+        isVisible && data ? data.classList.add("fadeInFromTop") : null;
+      },
+      { threshold: 0 },
+    );
+    data && dataObserver.observe(data);
+
+    points.forEach((item, index) => {
+      const itemObserver = new IntersectionObserver(
+        ([entry]) => {
+          if (!entry) return;
+          const isVisible = entry.isIntersecting;
+          if (isVisible) {
+            setTimeout(() => {
+              item.classList.add("fadeInFromBottom");
+            }, index * 180);
+            itemObserver.unobserve(item);
+          }
+        },
+        { threshold: 0 },
+      );
+      itemObserver.observe(item);
+    });
+  });
+</script>

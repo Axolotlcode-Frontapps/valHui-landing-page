@@ -1,0 +1,46 @@
+---
+import { SpacesGrid } from "@/ui/components/spaces-grid";
+import ConsultoryImage from "@/assets/images/consultory.jpg";
+import TerraceImage from "@/assets/images/terrace.png";
+import LocalImage from "@/assets/images/local.png";
+import ConsultoryTwoImage from "@/assets/images/consultory-two.png";
+import ConsultoryThreeImage from "@/assets/images/consultory-3.png";
+import LocalTwoImage from "@/assets/images/local-2.jpg";
+
+const gridData = [
+  {
+    title: "Consultorio",
+    href: "/spaces",
+    bg: ConsultoryImage,
+  },
+  {
+    title: "Terraza",
+    href: "/spaces",
+    bg: TerraceImage,
+  },
+  {
+    title: "Local comercial",
+    href: "/spaces",
+    bg: LocalImage,
+  },
+  {
+    title: "Consultorio",
+    href: "/spaces",
+    bg: ConsultoryTwoImage,
+  },
+  {
+    title: "Consultorio",
+    href: "/spaces",
+    bg: ConsultoryThreeImage,
+  },
+  {
+    title: "Local comercial",
+    href: "/spaces",
+    bg: LocalTwoImage,
+  },
+];
+
+---
+
+<SpacesGrid cards={gridData} />
+

@@ -1,12 +1,23 @@
 ---
 import { buttonVariants } from "@/ui/shared/button";
 
-import HomeHeroImage from "@/assets/images/hero-home.png";
+import Video from "@/assets/videos/valhui-video.mp4";
 ---
 
-<section class="section hero-home">
-  <div class="hero-home__overlay"></div>
-  <div class="section__container hero-home__container">
+<section class="section hero-home" id="home">
+  <div class="hero-home__overlay">
+    <video
+      width="100%"
+      height="100%"
+      autoplay
+      loop
+      muted
+      class="hero-home__video"
+    >
+      <source src={Video} type="video/mp4" />
+    </video>
+  </div>
+  <div class="section section__container hero-home__container">
     <div class="hero-home__info">
       <h1 class="hero-home__title">Espacios que impulsan tu negocio</h1>
       <p class="hero-home__description">
@@ -16,7 +27,7 @@ import HomeHeroImage from "@/assets/images/hero-home.png";
       </p>
       <div class="hero-home__buttons">
         <a
-          href="/"
+          href="/#ubicación"
           class={buttonVariants({
             className: "h-12",
           })}
@@ -24,7 +35,7 @@ import HomeHeroImage from "@/assets/images/hero-home.png";
           Renta un espacio
         </a>
         <a
-          href="/"
+          href="/#ubicación"
           class={buttonVariants({
             variant: "ghost",
             className:
@@ -38,11 +49,7 @@ import HomeHeroImage from "@/assets/images/hero-home.png";
   </div>
 </section>
 
-<style
-  define:vars={{
-    bgImage: `url(${HomeHeroImage.src})`,
-  }}
->
+<style>
   @reference "@/ui/styles/global.css";
 
   .hero-home {
@@ -52,6 +59,10 @@ import HomeHeroImage from "@/assets/images/hero-home.png";
 
   .hero-home__overlay {
     @apply absolute inset-0 bg-linear-to-r from-black/20 via-black/15 to-black/10 z-0;
+  }
+
+  .hero-home__video {
+    @apply w-full h-full object-cover aspect-9/16 md:aspect-video;
   }
 
   .hero-home__container {
@@ -74,3 +85,42 @@ import HomeHeroImage from "@/assets/images/hero-home.png";
     @apply flex flex-col md:flex-row gap-4;
   }
 </style>
+
+<script>
+  addEventListener("DOMContentLoaded", () => {
+    const data = document.querySelector(".hero-home");
+    const points = document.querySelectorAll(".hero-home__info > *");
+
+    (data as HTMLElement).style.opacity = "0";
+    points.forEach((item) => {
+      (item as HTMLElement).style.opacity = "0";
+    });
+
+    const dataObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry) return;
+        const isVisible = entry.isIntersecting;
+        isVisible && data ? data.classList.add("fadeIn") : null;
+      },
+      { threshold: 0 },
+    );
+    data && dataObserver.observe(data);
+
+    points.forEach((item, index) => {
+      const itemObserver = new IntersectionObserver(
+        ([entry]) => {
+          if (!entry) return;
+          const isVisible = entry.isIntersecting;
+          if (isVisible) {
+            setTimeout(() => {
+              item.classList.add("fadeInFromBottom");
+            }, index * 180);
+            itemObserver.unobserve(item);
+          }
+        },
+        { threshold: 0 },
+      );
+      itemObserver.observe(item);
+    });
+  });
+</script>

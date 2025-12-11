@@ -10,7 +10,7 @@ const MX_PHONE_REGEX =
 class ContactSchema {
 	contactFormSchema = z.object({
 		name: z.string().min(2, "El nombre debe tener al menos 2 caracteres"),
-		email: z.email("El correo electrónico no es válido"),
+		email: z.string().email("El correo electrónico no es válido"),
 		phone: z
 			.string()
 			.regex(
@@ -18,7 +18,9 @@ class ContactSchema {
 				"El teléfono debe ser de México (10 dígitos, opcional +52 y separadores)",
 			),
 		bussiness: z.string().nullable(),
-		bussinessType: z.enum(bussinessTypeOptions).nullable(),
+		bussinessType: z
+			.enum(bussinessTypeOptions as [string, ...string[]])
+			.nullable(),
 		interestAreas: z.array(z.string()),
 		requeriments: z
 			.string()
@@ -26,7 +28,9 @@ class ContactSchema {
 		description: z
 			.string()
 			.max(1000, "La descripción debe tener como máximo 1000 caracteres"),
-		methodContact: z.enum(methodContactOptionsValues).nullable(),
+		methodContact: z
+			.enum(methodContactOptionsValues as [string, ...string[]])
+			.nullable(),
 		wantVisit: z.boolean(),
 		agreeTerms: z.boolean().refine((val) => val === true, {
 			message: "Debes aceptar los términos y condiciones",

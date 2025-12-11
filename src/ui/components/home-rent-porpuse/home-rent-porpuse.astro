@@ -23,7 +23,7 @@ const data = {
 };
 ---
 
-<section class="section home-Rent">
+<section class="section home-Rent" id="experiencia">
   <div class="section__container home-Rent__container">
     <div class="home-Rent__info">
       <h1 class="home-Rent__title">
@@ -70,3 +70,45 @@ const data = {
     @apply w-full grid grid-cols-1 md:grid-cols-3 gap-6;
   }
 </style>
+
+
+
+<script>
+  addEventListener("DOMContentLoaded", () => {
+
+    const data = document.querySelector(".home-Rent__info");
+    const points = document.querySelectorAll(".home-Rent__cards > *");
+
+    (data as HTMLElement).style.opacity = "0";
+    points.forEach((item) => {
+      (item as HTMLElement).style.opacity = "0";
+    });
+
+    const dataObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry) return;
+        const isVisible = entry.isIntersecting;
+        isVisible && data ? data.classList.add("fadeIn") : null;
+      },
+      { threshold: 0 },
+    );
+    data && dataObserver.observe(data);
+
+    points.forEach((item, index) => {
+      const itemObserver = new IntersectionObserver(
+        ([entry]) => {
+          if (!entry) return;
+          const isVisible = entry.isIntersecting;
+          if (isVisible) {
+            setTimeout(() => {
+              item.classList.add("fadeInFromBottom");
+            }, index * 180);
+            itemObserver.unobserve(item);
+          }
+        },
+        { threshold: 0 },
+      );
+      itemObserver.observe(item);
+    });
+  });
+</script>

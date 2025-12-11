@@ -1,29 +1,29 @@
 export const getQuickLinks = () => [
 	{
-		link: "/",
+		link: "/#home",
 		label: "Home",
 	},
 	{
-		link: "/#business",
+		link: "/#negocios",
 		label: "Business",
 	},
 	{
-		link: "/#doctors",
+		link: "/spaces#grid",
 		label: "Doctors",
 	},
 	{
-		link: "/#terrace",
+		link: "/spaces#grid",
 		label: "Terrace",
 	},
 ];
 
 export const getMoreLinks = () => [
 	{
-		link: "/#experience",
+		link: "/#experiencia",
 		label: "Experience",
 	},
 	{
-		link: "/#location",
+		link: "/#ubicación",
 		label: "Location",
 	},
 	{
@@ -31,7 +31,7 @@ export const getMoreLinks = () => [
 		label: "FAQs",
 	},
 	{
-		link: "/#contact",
+		link: "/#ubicación",
 		label: "Contact",
 	},
 ];
@@ -39,11 +39,11 @@ export const getMoreLinks = () => [
 export const getContactLinks = () => [
 	{
 		link: "/#location",
-		label: "123 Main Avenue Downtown District City 12345",
+		label: "C. Río Lerma 296, Cuauhtémoc, 06500. Ciudad de México, CDMX",
 	},
 	{
-		link: "https://wa.link/",
-		label: "+1 (555) 123-4567",
+		link: "https://wa.me/525544776756",
+		label: "+52 55 4477 6756",
 	},
 	{
 		link: "mailto:info@valhui.com",
@@ -53,11 +53,11 @@ export const getContactLinks = () => [
 
 export const getLegalsLinks = () => [
 	{
-		link: "/terms",
+		link: "/",
 		label: "Terms & Conditions",
 	},
 	{
-		link: "/privacy",
+		link: "/",
 		label: "Privacy Policy",
 	},
 ];

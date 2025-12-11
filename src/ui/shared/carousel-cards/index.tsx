@@ -12,6 +12,7 @@ interface Props {
 		title: string;
 		text: string;
 		image?: string;
+		href?: string;
 	}[];
 }
 
@@ -38,6 +39,7 @@ export const Carouselexperiences = ({ data }: Props) => {
 								title={experience.title}
 								text={experience.text}
 								image={experience.image}
+								href={experience.href}
 							/>
 						</CarouselItem>
 					))}

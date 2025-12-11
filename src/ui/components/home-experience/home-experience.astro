@@ -11,31 +11,36 @@ const data = [
     title: "Local comercial",
     text: "Renta locales en ValHui y únete a una comunidad comercial en crecimiento.",
     image: experienceOne.src,
+    href: "/spaces#tabs",
   },
   {
     title: "Consultorios",
     text: "Renta espacios médicos con ubicación estratégica y visibilidad.",
     image: experienceTwo.src,
+    href: "/spaces#tabs",
   },
   {
     title: "Oficinas",
     text: "Ofrecemos oficinas en renta para negocios que buscan imagen profesional, ubicación y conectividad.",
     image: experienceThree.src,
+    href: "/spaces#tabs",
   },
   {
     title: "Terraza",
     text: "Terrazas en renta ideales para experiencias al aire libre y eventos comerciales únicos.",
     image: experienceFour.src,
+    href: "/spaces#tabs",
   },
   {
     title: "Restaurante",
     text: "Locales en renta para restaurantes que buscan visibilidad, afluencia y una ubicación privilegiada.",
     image: experienceFive.src,
+    href: "/spaces#tabs",
   },
 ];
 ---
 
-<section class="section home-experience">
+<section class="section home-experience" id="negocios">
   <div class="section__container home-experience__container">
     <div class="home-experience__info">
       <h1 class="home-experience__title">
@@ -48,7 +53,9 @@ const data = [
         días.
       </p>
     </div>
-    <Carouselexperiences client:load {data} />
+    <div class="home-experience__carrousel">
+      <Carouselexperiences client:load {data} />
+    </div>
   </div>
 </section>
 
@@ -71,3 +78,35 @@ const data = [
     @apply text-center text-gray-600 text-lg max-w-[900px] mx-auto mb-12;
   }
 </style>
+
+
+<script>
+  addEventListener("DOMContentLoaded", () => {
+
+    const data = document.querySelector(".home-experience__info");
+    const slider = document.querySelector(".home-experience__carrousel");
+
+    (data as HTMLElement).style.opacity = "0";
+    (slider as HTMLElement).style.opacity = "0";
+
+    const dataObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry) return;
+        const isVisible = entry.isIntersecting;
+        isVisible && data ? data.classList.add("fadeIn") : null;
+      },
+      { threshold: 0 },
+    );
+    data && dataObserver.observe(data);
+
+    const sliderObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry) return;
+        const isVisible = entry.isIntersecting;
+        isVisible && slider ? slider.classList.add("fadeIn") : null;
+      },
+      { threshold: 0 },
+    );
+    slider && sliderObserver.observe(slider);
+  });
+</script>
