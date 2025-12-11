@@ -1,55 +1,10 @@
 ---
 import { Layout } from "@/layout";
-import { HomeFindUs } from "@/ui/components/home-find-us";
 import { HomeRent } from "@/ui/components/home-rent";
-
-import MapMarkerIcon from "@/assets/icons/Icon.svg";
-import PhoneIcon from "@/assets/icons/Icon (1).svg";
-import EmailIcon from "@/assets/icons/Icon (2).svg";
-import MessageIcon from "@/assets/icons/Icon (3).svg";
-
-const findUsData = {
-	contact_data: [
-		{
-			title: "Address",
-			text: "123 Main Avenue, Downtown District, City 12345",
-			icon: MapMarkerIcon,
-		},
-		{
-			title: "Phone",
-			text: "+1 (555) 123-4567",
-			icon: PhoneIcon,
-		},
-		{
-			title: "Email",
-			text: "info@valhui.com",
-			icon: EmailIcon,
-		},
-		{
-			title: "WhatsApp",
-			text: "+1 (555) 123-4567",
-			icon: MessageIcon,
-		}
-
-	],
-	schedules_data: [
-		{
-			weekdays: "Lunes - Sábado",
-			hours: "06:00 AM - 21:00 PM",
-		},
-		{
-			weekdays: "Domingo",
-			hours: "07:00 AM - 16:00 PM",
-		},
-		{
-			weekdays: "Horario de Oficina",
-			hours: "Lunes - Viernes, 9:00 AM - 6:00 PM",
-		}
-	]
-};
+import { HomeFindUsData } from "@/ui/components/home-find-us-data";
 ---
 
 <Layout>
 	<HomeRent />
-	<HomeFindUs {...findUsData} />
+	<HomeFindUsData />
 </Layout>
