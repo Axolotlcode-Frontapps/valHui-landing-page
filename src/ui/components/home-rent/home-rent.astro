@@ -1,0 +1,118 @@
+---
+import { Image } from "astro:assets";
+import Computer from "@/assets/icons/computer.astro";
+import Display from "@/assets/icons/display.astro";
+import Focus from "@/assets/icons/focus.astro";
+import Horn from "@/assets/icons/horn.astro";
+import Aisle from "@/assets/images/aisle.png";
+---
+
+<section class="section rent">
+  <div class="section__container rent__container">
+    <Image class="image__rent" src={Aisle} alt="Imagen de pasillo" />
+
+    <div class="rent__icons">
+      <div class="rent__item">
+        <Horn class="icon" />
+        <span>Campañas promocionales</span>
+      </div>
+      <div class="rent__item">
+        <Display class="icon" />
+        <span>Exposición en redes</span>
+      </div>
+      <div class="rent__item">
+        <Computer class="icon" />
+        <span>Presencia digital</span>
+      </div>
+      <div class="rent__item">
+        <Focus class="icon" />
+        <span>Soporte creativo</span>
+      </div>
+
+    </div>
+    <a class="rent__button" href="/">Descubra las opciones de alquiler</a>
+  </div>
+</section>
+
+<style>
+    @reference "@/ui/styles/global.css";
+
+    .rent {
+      @apply w-full bg-[#7148EC0D] ;
+    }
+    .rent__container {
+      @apply  gap-8 grid md:grid-cols-2 md:gap-10 items-center w-full max-w-[992px] py-10; 
+    }
+
+    .image__rent {
+      @apply rounded-[10px] mask-size-[100%_100%] mx-auto  ; 
+    }
+
+    .rent__item {
+      @apply flex items-center gap-7  rounded-xl py-2 px-4 font-bold text-[20px] ; 
+    }
+    .icon {
+      @apply w-7 h-7 fill-[#7148EC] ;
+    }
+    .rent__button {
+      @apply bg-[#7148EC] md:col-span-2 w-fit rounded-xl text-white py-2.5 px-4 text-[14px] font-bold items-center mx-auto ;
+      @apply hover:scale-105 transition-transform duration-300 ease-in-out active:scale-95; 
+    }
+</style>
+
+
+<script>
+  addEventListener("DOMContentLoaded", () => {
+
+    const image = document.querySelector(".image__rent");
+    const button = document.querySelector(".rent__button"); 
+
+    const rentIcons = document.querySelectorAll(".rent__icons > *");
+
+    (image as HTMLElement).style.opacity = "0";
+    (button as HTMLElement).style.opacity = "0";
+
+    rentIcons.forEach((item) => {
+      (item as HTMLElement).style.opacity = "0";
+    });
+
+    const imageObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry) return;
+        const isVisible = entry.isIntersecting;
+        isVisible && image ? image.classList.add("fadeIn") : null;
+      },
+      { threshold: 0 },
+    );
+    image && imageObserver.observe(image);
+
+    const buttonObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry) return;
+        const isVisible = entry.isIntersecting;
+        isVisible && button
+          ? button.classList.add("fadeIn")
+          : null;
+      },
+      { threshold: 0 },
+    );
+    button && buttonObserver.observe(button);
+
+    rentIcons.forEach((item, index) => {
+      const itemObserver = new IntersectionObserver(
+        ([entry]) => {
+          if (!entry) return;
+          const isVisible = entry.isIntersecting;
+          if (isVisible) {
+            setTimeout(() => {
+              item.classList.add("fadeInFromBottom");
+            }, index * 180);
+            itemObserver.unobserve(item);
+          }
+        },
+        { threshold: 0 },
+      );
+      itemObserver.observe(item);
+    });
+  });
+</script>

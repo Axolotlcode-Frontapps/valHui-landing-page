@@ -1,0 +1,250 @@
+---
+import { FindUsCard } from "@/ui/components/home-find-us-cards";
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+
+import ClockIcon from "@/assets/icons/Icon (4).svg";
+import { ContactModal } from "@/ui/shared/contact-modal";
+
+interface Props {
+  contact_data: {
+    title: string;
+    text: string;
+    icon: ImageMetadata;
+  }[];
+  schedules_data: {
+    weekdays: string;
+    hours: string;
+  }[];
+}
+
+const { contact_data, schedules_data } = Astro.props;
+---
+
+<section class="section find-us">
+  <div class="section__container find-us__container">
+    <h2 class="find-us__title">Encuéntranos</h2>
+    <p class="find-us__text">
+      Nuestra ubicación en Reforma ofrece conectividad, comodidad y facilidad de
+      acceso para clientes y visitantes.
+    </p>
+    <div class="find-us__content">
+      <iframe
+        title="ValHui Location"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d388.7736393991162!2d-99.17444575441885!3d19.42556454213523!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d1ff48fb128d35%3A0xd3108dd34aaf2cb8!2sValHui!5e0!3m2!1ses!2smx!4v1765404762016!5m2!1ses!2smx"
+        width="100%"
+        height="100%"
+        style={{ border: 0, borderRadius: "10px" }}
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        allowfullscreen="false"
+      >
+      </iframe>
+
+      <div class="find-us__info">
+        <div class="find-us__contact">
+          <h4 class="find-us__contact__title">Información de contacto</h4>
+          <div class="find-us__contact-cards">
+            {contact_data.map((item) => <FindUsCard {...item} />)}
+            <div>
+              <ContactModal client:visible />
+            </div>
+          </div>
+        </div>
+
+        <div class="find-us__schedule">
+          <h4 class="find-us__schedule__title">
+            <Image src={ClockIcon} alt="" class="size-5" />
+            Horario de apertura
+          </h4>
+          <div class="find-us__schedule-cards">
+            {
+              schedules_data.map(({ weekdays, hours }) => (
+                <div class="schedule-card">
+                  <p class="schedule-card__weekdays">{weekdays}</p>
+                  <p class="schedule-card__hours">{hours}</p>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  @reference '@/ui/styles/global.css';
+  .find-us {
+    @apply w-full bg-[#ECEEF24D] py-8;
+  }
+  .find-us__container {
+    @apply w-full flex flex-col gap-4 items-center justify-items-center;
+  }
+  .find-us__title {
+    @apply text-3xl md:text-4xl md:leading-10 font-bold tracking-[-0.37px] font-Nova;
+  }
+  .find-us__text {
+    @apply w-full max-w-[650px] text-lg md:leading-7 tracking-[-0.44px] mb-8 text-center text-[#717182];
+  }
+
+  .find-us__content {
+    @apply w-full grid grid-cols-1 md:grid-cols-2 gap-8;
+  }
+
+  .find-us__info {
+    @apply w-full grid grid-cols-1 gap-6;
+  }
+
+  .find-us__contact {
+    @apply w-full p-3 md:p-6 bg-[#FFFFFF] rounded-[10px];
+  }
+  .find-us__contact__title {
+    @apply text-[#0A0A0A] tracking-[-0.31px] mb-4;
+  }
+  .find-us__contact-cards {
+    @apply w-full flex flex-col gap-4;
+  }
+
+  .find-us__schedule {
+    @apply w-full p-3 md:p-6 bg-[#FFFFFF] rounded-[10px];
+  }
+  .find-us__schedule__title {
+    @apply text-[#0A0A0A] tracking-[-0.31px] flex gap-2 mb-4;
+  }
+  .find-us__schedule-cards {
+    @apply w-full flex flex-col gap-3 divide-y divide-[#0000001A];
+  }
+
+  .schedule-card {
+    @apply w-full py-1.5 flex justify-between;
+  }
+  .schedule-card__weekdays {
+    @apply w-fit text-sm md:text-base text-[#717182] tracking-[-0.31px];
+  }
+  .schedule-card__hours {
+    @apply w-fit text-sm md:text-base text-[#0A0A0A] tracking-[-0.31px] text-nowrap;
+  }
+</style>
+
+<script>
+  addEventListener("DOMContentLoaded", () => {
+    const map = document.querySelector(".find-us__content > iframe");
+    const title = document.querySelector(".find-us__title");
+    const description = document.querySelector(".find-us__text");
+
+    const contactTitle = document.querySelector(".find-us__contact__title");
+    const contactCards = document.querySelectorAll(
+      ".find-us__contact-cards > *",
+    );
+
+    console.log(contactCards);
+
+    const scheduleTitle = document.querySelector(".find-us__schedule__title");
+    const scheduleCards = document.querySelectorAll(
+      ".find-us__schedule-cards > *",
+    );
+
+    (map as HTMLElement).style.opacity = "0";
+    (title as HTMLElement).style.opacity = "0";
+    (description as HTMLElement).style.opacity = "0";
+
+    (contactTitle as HTMLElement).style.opacity = "0";
+    contactCards.forEach((item) => {
+      (item as HTMLElement).style.opacity = "0";
+    });
+
+    (scheduleTitle as HTMLElement).style.opacity = "0";
+    scheduleCards.forEach((item) => {
+      (item as HTMLElement).style.opacity = "0";
+    });
+
+    const mapObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry) return;
+        const isVisible = entry.isIntersecting;
+        isVisible && map ? map.classList.add("fadeIn") : null;
+      },
+      { threshold: 0 },
+    );
+    map && mapObserver.observe(map);
+
+    const titleObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry) return;
+        const isVisible = entry.isIntersecting;
+        isVisible && title ? title.classList.add("fadeInFromTop") : null;
+      },
+      { threshold: 0 },
+    );
+    title && titleObserver.observe(title);
+
+    const descriptionObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry) return;
+        const isVisible = entry.isIntersecting;
+        isVisible && description
+          ? description.classList.add("fadeInFromTop")
+          : null;
+      },
+      { threshold: 0 },
+    );
+    description && descriptionObserver.observe(description);
+
+    const contactTitleObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry) return;
+        const isVisible = entry.isIntersecting;
+        isVisible && contactTitle ? contactTitle.classList.add("fadeIn") : null;
+      },
+      { threshold: 0 },
+    );
+    contactTitle && contactTitleObserver.observe(contactTitle);
+
+    contactCards.forEach((item, index) => {
+      const itemObserver = new IntersectionObserver(
+        ([entry]) => {
+          if (!entry) return;
+          const isVisible = entry.isIntersecting;
+          if (isVisible) {
+            setTimeout(() => {
+              item.classList.add("fadeInFromBottom");
+            }, index * 180);
+            itemObserver.unobserve(item);
+          }
+        },
+        { threshold: 0 },
+      );
+      itemObserver.observe(item);
+    });
+
+    const scheduleTitleObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry) return;
+        const isVisible = entry.isIntersecting;
+        isVisible && scheduleTitle
+          ? scheduleTitle.classList.add("fadeIn")
+          : null;
+      },
+      { threshold: 0 },
+    );
+    scheduleTitle && scheduleTitleObserver.observe(scheduleTitle);
+
+    scheduleCards.forEach((item, index) => {
+      const itemObserver = new IntersectionObserver(
+        ([entry]) => {
+          if (!entry) return;
+          const isVisible = entry.isIntersecting;
+          if (isVisible) {
+            setTimeout(() => {
+              item.classList.add("fadeInFromBottom");
+            }, index * 180);
+            itemObserver.unobserve(item);
+          }
+        },
+        { threshold: 0 },
+      );
+      itemObserver.observe(item);
+    });
+  });
+</script>

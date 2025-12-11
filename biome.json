@@ -48,7 +48,8 @@
 			"recommended": true,
 			"correctness": {
 				"noUnusedImports": "off",
-				"noUnusedVariables": "off"
+				"noUnusedVariables": "off",
+				"noChildrenProp": "off"
 			},
 			"style": {
 				"useImportType": "off"
@@ -73,11 +74,15 @@
 		}
 	},
 	"assist": {
-		"enabled": true,
-		"actions": {
-			"source": {
-				"organizeImports": "on"
-			}
+		"enabled": false
+	},
+	"css": {
+		"formatter": {
+			"enabled": true,
+			"indentWidth": 2
+		},
+		"parser": {
+			"tailwindDirectives": true
 		}
 	}
 }

@@ -1,0 +1,76 @@
+---
+import { ChevronDown } from "lucide-react";
+
+interface Props {
+  question: string;
+  answer: string;
+  name?: string;
+  id?: string;
+  open?: boolean;
+  ordered?: boolean;
+}
+
+const { question, answer, name = "faqs", id, open, ordered } = Astro.props;
+---
+
+<details class="accordion" {name} {id} {open}>
+  <summary class="accordion__question">
+    <p class="accordion__title">{question}</p>
+    <span class="arrow ">
+      <ChevronDown size={16}  />
+    </span>
+  </summary>
+  <p class="accordion__answer">{answer}</p>
+</details>
+
+<style>
+  @reference "@/ui/styles/global.css";
+
+  .accordion {
+    @apply m-0 px-6 ;
+    --time: 400ms;
+    &::details-content {
+      opacity: 0;
+      transition:
+        opacity var(--time) ease-in-out,
+        content-visibility var(--time) allow-discrete;
+    }
+    &[open]::details-content {
+      opacity: 1;
+    }
+    &[open] .arrow {
+      @apply rotate-180;
+    }
+
+    @supports (interpolate-size: allow-keywords) {
+      &::details-content {
+        opacity: 0;
+        height: 0;
+        interpolate-size: allow-keywords;
+        transition:
+          opacity var(--time) ease-in-out,
+          content-visibility var(--time) allow-discrete,
+          height var(--time) ease-in-out;
+      }
+      &[open]::details-content {
+        opacity: 1;
+        height: auto;
+      }
+    }
+  }
+
+  .accordion__question {
+    @apply flex items-center justify-between  cursor-pointer z-0  py-6;
+  }
+  .accordion__title {
+    @apply text-[16px] md:text-lg font-semibold;
+  }
+
+  .accordion__answer {
+    @apply text-sm md:text-base w-full  max-w-[530px] pb-6 text-[#4A5565];
+  }
+
+  .arrow {
+    @apply text-[#717182] grid place-content-center size-6 rounded-full rotate-0 transition-all duration-300 ease-in-out;
+  }
+</style>

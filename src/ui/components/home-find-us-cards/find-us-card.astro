@@ -1,0 +1,37 @@
+---
+import type { ImageMetadata } from "astro";
+import { Image } from "astro:assets";
+
+interface Props {
+  title: string;
+  text: string;
+  icon: ImageMetadata;
+}
+
+const { title, text, icon } = Astro.props;
+---
+
+<article class="card">
+  <Image src={icon} alt="" class="p-2.5 rounded-[10px] bg-[#7148EC1A] overflow-visible w-10 items-center justify-items-center" />
+  <div class="card__content">
+    <h5 class="card__title">{title}</h5>
+    <p class="card__text">{text}</p>
+  </div>
+</article>
+
+<style>
+  @reference '@/ui/styles/global.css';
+
+  .card {
+    @apply w-full grid grid-cols-[auto_1fr] gap-x-3;
+  }
+  .card__content {
+    @apply w-full flex flex-col gap-1;
+  }
+  .card__title {
+    @apply text-sm text-[#717182] leading-5;
+  }
+  .card__text {
+    @apply text-sm md:text-base text-[#0A0A0A] leading-6 tracking-[-0.31px];
+  }
+</style>
