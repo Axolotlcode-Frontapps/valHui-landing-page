@@ -132,7 +132,7 @@ export const TabsSection = ({ data }: Props) => {
 								<a
 									href={item.href ? item.href : "/"}
 									target='_blank'
-									rel='noopener noreferrer'
+									download
 									className='block w-full max-w-[168px] text-sm text-white leading-5 tracking-[-0.15px] font-bold font-Nova text-center bg-[#7148EC] rounded-xl py-2.5 mt-[9px] mx-auto hover:scale-105 transition-all duration-200 ease-in-out active:scale-95'
 								>
 									Descargar plano
