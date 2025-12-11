@@ -2,9 +2,16 @@
 import { Layout } from "@/layout";
 import { HomeRent } from "@/ui/components/home-rent";
 import { Faqs } from "@/ui/shared/faqs/faqs";
+import { HomeCta } from "@/ui/components/home-cta";
+
+const ctaData = {
+	title: "¿Listo para rentar en ValHui?",
+	text: "Aprovecha espacios en renta con ubicación estratégica, visibilidad garantizada y beneficios reales para tu marca. Locales, oficinas, consultorios y terrazas disponibles hoy mismo.",
+};
 ---
 
 <Layout>
 	<HomeRent />
 	<Faqs />
+	<HomeCta {...ctaData} />
 </Layout>
