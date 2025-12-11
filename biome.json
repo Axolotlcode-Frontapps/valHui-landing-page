@@ -48,13 +48,15 @@
 			"recommended": true,
 			"correctness": {
 				"noUnusedImports": "off",
-				"noUnusedVariables": "off"
+				"noUnusedVariables": "off",
+				"noChildrenProp": "off"
 			},
 			"style": {
 				"useImportType": "off"
 			},
 			"suspicious": {
-				"noUnknownAtRules": "off"
+				"noUnknownAtRules": "off",
+				"noArrayIndexKey": "off"
 			},
 			"a11y": {
 				"useSemanticElements": "off"

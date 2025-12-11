@@ -1,0 +1,91 @@
+---
+import SpacesHeroImage from "@/assets/images/hero-spaces.png";
+---
+
+<section class="section hero-spaces">
+  <div class="hero-spaces__overlay"></div>
+  <div class="section__container hero-spaces__container">
+    <div class="hero-spaces__info">
+      <h1 class="hero-spaces__title">
+        Tu próximo local está aquí: visibilidad, ubicación y beneficios reales
+      </h1>
+      <p class="hero-spaces__description">
+        Forma parte de ValHui: una comunidad activa con espacios en renta y
+        beneficios diseñados para hacer crecer tu marca.
+      </p>
+    </div>
+  </div>
+</section>
+
+<style
+  define:vars={{
+    bgImage: `url(${SpacesHeroImage.src})`,
+  }}
+>
+  @reference "@/ui/styles/global.css";
+
+  .hero-spaces {
+    background-image: var(--bgImage);
+    @apply bg-cover bg-center relative;
+  }
+
+  .hero-spaces__overlay {
+    @apply absolute inset-0 bg-linear-to-r from-black/20 via-black/15 to-black/10 z-0;
+  }
+
+  .hero-spaces__container {
+    @apply min-h-[calc(100dvh-80px)] flex flex-col justify-center relative z-10;
+  }
+
+  .hero-spaces__info {
+    @apply flex flex-col items-center justify-center gap-8 text-white text-center mt-20;
+  }
+
+  .hero-spaces__title {
+    @apply max-w-[748px] mx-auto font-bold text-5xl lg:text-6xl tracking-[0.26px] leading-[60px];
+  }
+
+  .hero-spaces__description {
+    @apply text-lg lg:text-xl tracking-[-0.45px] text-white/90 font-normal max-w-[664px] mx-auto;
+  }
+</style>
+
+<script>
+  addEventListener("DOMContentLoaded", () => {
+
+    const data = document.querySelector(".hero-spaces");
+    const points = document.querySelectorAll(".hero-spaces__info > *");
+
+    (data as HTMLElement).style.opacity = "0";
+    points.forEach((item) => {
+      (item as HTMLElement).style.opacity = "0";
+    });
+
+    const dataObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry) return;
+        const isVisible = entry.isIntersecting;
+        isVisible && data ? data.classList.add("fadeIn") : null;
+      },
+      { threshold: 0 },
+    );
+    data && dataObserver.observe(data);
+
+    points.forEach((item, index) => {
+      const itemObserver = new IntersectionObserver(
+        ([entry]) => {
+          if (!entry) return;
+          const isVisible = entry.isIntersecting;
+          if (isVisible) {
+            setTimeout(() => {
+              item.classList.add("fadeInFromBottom");
+            }, index * 180);
+            itemObserver.unobserve(item);
+          }
+        },
+        { threshold: 0 },
+      );
+      itemObserver.observe(item);
+    });
+  });
+</script>
