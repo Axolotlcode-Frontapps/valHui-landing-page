@@ -5,9 +5,10 @@ interface Props {
 	title: string;
 	text: string;
 	image?: string;
+	href?: string;
 }
 
-export const ExperienceCard = ({ title, text, image }: Props) => {
+export const ExperienceCard = ({ title, text, image, href }: Props) => {
 	return (
 		<article
 			className={cn(
@@ -31,7 +32,7 @@ export const ExperienceCard = ({ title, text, image }: Props) => {
 				</div>
 
 				<a
-					href='/'
+					href={href}
 					className={buttonVariants({
 						variant: "outline",
 						className:

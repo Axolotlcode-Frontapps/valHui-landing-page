@@ -2,17 +2,18 @@
 import { Image } from "astro:assets";
 
 import { Navigation } from "./navigation";
-import { Button } from "../button";
+import { Button, buttonVariants } from "../button";
 
 import LogoApp from "@/assets/images/valhui.png";
+import { cn } from "@/lib/utils/shadcn";
 
 const links = [
-  { name: "Inicio", href: "#" },
-  { name: "Negocios", href: "#" },
-  { name: "Experiencia", href: "#" },
-  { name: "Ubicación", href: "#" },
-  { name: "FAQ", href: "#" },
-  { name: "Contacto", href: "#" },
+  { name: "Inicio", href: "/#home" },
+  { name: "Negocios", href: "/#negocios" },
+  { name: "Experiencia", href: "/#experiencia" },
+  { name: "Ubicación", href: "/#ubicación" },
+  { name: "FAQ", href: "/#faqs" },
+  { name: "Contacto", href: "/#contacto" },
 ];
 ---
 
@@ -26,7 +27,7 @@ const links = [
     </div>
 
     <Navigation client:load {links}>
-      <Button className="font-bold h-12"> Rentar un espacio </Button>
+      <a href="/#ubicación" class={cn(buttonVariants({ className: "font-bold h-12" }))}> Rentar un espacio </a>
     </Navigation>
   </section>
 </header>

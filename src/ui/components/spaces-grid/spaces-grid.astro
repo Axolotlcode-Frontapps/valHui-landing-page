@@ -14,7 +14,7 @@ interface Props {
 const { cards } = Astro.props;
 ---
 
-<section class="section grid-section">
+<section class="section grid-section" id="grid">
     <div class="section__container grid-section__container">
       <div class="grid-section__items">
 			{cards.map(({title, bg}, index) => (

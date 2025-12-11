@@ -1,29 +1,29 @@
 export const getQuickLinks = () => [
 	{
-		link: "/",
+		link: "/#home",
 		label: "Home",
 	},
 	{
-		link: "/#business",
+		link: "/#negocios",
 		label: "Business",
 	},
 	{
-		link: "/#doctors",
+		link: "/spaces#grid",
 		label: "Doctors",
 	},
 	{
-		link: "/#terrace",
+		link: "/spaces#grid",
 		label: "Terrace",
 	},
 ];
 
 export const getMoreLinks = () => [
 	{
-		link: "/#experience",
+		link: "/#experiencia",
 		label: "Experience",
 	},
 	{
-		link: "/#location",
+		link: "/#ubicación",
 		label: "Location",
 	},
 	{
@@ -31,7 +31,7 @@ export const getMoreLinks = () => [
 		label: "FAQs",
 	},
 	{
-		link: "/#contact",
+		link: "/#ubicación",
 		label: "Contact",
 	},
 ];
@@ -53,11 +53,11 @@ export const getContactLinks = () => [
 
 export const getLegalsLinks = () => [
 	{
-		link: "/terms",
+		link: "/",
 		label: "Terms & Conditions",
 	},
 	{
-		link: "/privacy",
+		link: "/",
 		label: "Privacy Policy",
 	},
 ];
