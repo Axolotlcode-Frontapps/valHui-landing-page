@@ -46,7 +46,7 @@ import Video from "@/assets/videos/valhui-video.mp4";
         </div>
       </div>
     </div>
-  <!-- <div class="hero-home__overlay"></div> -->
+  <div class="hero-home__overlay"></div> 
 </section>
 
 <style>
@@ -56,11 +56,11 @@ import Video from "@/assets/videos/valhui-video.mp4";
     @apply px-0 relative;
   }
   .hero-home__video {
-    @apply w-full aspect-9/16 md:aspect-video object-cover lg:max-h-[80dvh] ;
+    @apply w-full aspect-9/16 md:aspect-video object-cover md:max-h-[90dvh] 2xl:max-h-[60dvh] ;
   }
 
   .hero-home__overlay {
-    @apply absolute inset-0 bg-linear-to-r from-black/20 via-black/15 to-black/10 z-10;
+    @apply absolute inset-0 bg-linear-to-r from-black/20 via-black/15 to-black/10 z-10 pointer-events-none;
   }
 
   .hero-home__container {
