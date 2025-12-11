@@ -1,0 +1,68 @@
+---
+import RentOne from "@/assets/icons/rentOne.png";
+import RentTwo from "@/assets/icons/rentTwo.png";
+import RentThree from "@/assets/icons/rentThree.png";
+import CardRent from "@/ui/shared/cardRent.astro";
+
+const data = {
+  cardRentOne: {
+    icon: RentOne,
+    title: "50K+",
+    text: "Visitantes mensuales",
+  },
+  cardRentTwo: {
+    icon: RentTwo,
+    title: "30+",
+    text: "Eventos por año",
+  },
+  cardRentThree: {
+    icon: RentThree,
+    title: "95%",
+    text: "Satisfacción del inquilino",
+  },
+};
+---
+
+<section class="section home-Rent">
+  <div class="home-Rent__container">
+    <div class="home-Rent__title">
+      <h1 class="home-Rent__title">
+        Renta con propósito, crece con resultados
+      </h1>
+      <p class="home-Rent__text">
+        Rentar en ValHui te brinda más que espacio: obtén soporte en marketing,
+        operación eficiente y una red profesional que fortalece tu estrategia de
+        negocio.
+      </p>
+    </div>
+    <div class="home-Rent__container">
+      <CardRent {...data.cardRentOne} />
+      <CardRent {...data.cardRentTwo} />
+      <CardRent {...data.cardRentThree} />
+    </div>
+  </div>
+</section>
+
+<style>
+  @reference '@/ui/styles/global.css';
+
+  .home-Rent {
+    @apply w-full py-16 bg-[#FFFF];
+  }
+
+  .home-Rent__section {
+    @apply max-w-full px-6 bg-[#F5F7FA];
+  }
+
+  .home-Rent__title {
+    @apply w-full text-center font-bold text-[#0A0A0A] text-4xl p-4;
+  }
+
+  .home-Rent__text {
+    @apply w-full h-14 text-center text-[#717182] text-lg ; 
+  }
+
+  .home-Rent__container {
+    @apply w-full h-full grid grid-cols-3 md:grid-cols-1 gap-4 mx-6 text-center;
+  }
+</style>

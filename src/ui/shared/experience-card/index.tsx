@@ -9,7 +9,7 @@ interface Props {
 
 export const ExperienceCard = ({ title, text, image }: Props) => {
 	return (
-		<div className='flex justify-center max-w-[405px] mx-[9px] max-h-[534px]'>
+		<div className='flex justify-center max-w-[400px] mx-[9px] max-h-[400px]'>
 			<div
 				className={cn(
 					"w-full flex flex-col rounded-2xl text-left sm:max-w-[405px] hover:scale-105 group transition-all duration-300 ease-in-out border border-[#DFDFDF] shadow bg-white",
