@@ -1,6 +1,6 @@
 ---
-import HornIcon from "@/assets/icons/horn.svg"
-import PointIcon from "@/assets/icons/point.svg"
+import HornIcon from "@/assets/icons/horn.svg";
+import PointIcon from "@/assets/icons/point.svg";
 import { CardsRent } from "../spaces-cards";
 
 const data = [
@@ -21,9 +21,9 @@ const data = [
       {
         text: "Soporte creativo (Copys, diseño gráfico y estrategia de marca)",
       },
-    ],  
+    ],
   },
-    {
+  {
     icon: HornIcon,
     title: "Ubicación Estratégica ",
     point: PointIcon,
@@ -40,9 +40,12 @@ const data = [
       {
         text: "Zona segura, activa y en constante movimiento",
       },
-    ],  
+      {
+        text: "Estacionamientos cercanos",
+      },
+    ],
   },
-    {
+  {
     icon: HornIcon,
     title: "Servicios Incluidos",
     point: PointIcon,
@@ -59,16 +62,21 @@ const data = [
       {
         text: "Trámite de renta simple y rápido",
       },
-    ],  
-  },     
+    ],
+  },
 ];
 ---
 
 <section class="section spaces-rent">
   <div class="section__container spaces-rent__container">
     <div class="spaces-rent__information">
-      <h1 class="spaces-rent__title">Renta un espacio y vive una experiencia completa</h1>
-      <h2 class="spaces-rent__subtitle">En ValHui no solo obtienes un espacio: accedes a visibilidad, ubicación privilegiada y servicios que te permiten operar sin complicaciones.</h2>
+      <h1 class="spaces-rent__title">
+        Renta un espacio y vive una experiencia completa
+      </h1>
+      <h2 class="spaces-rent__subtitle">
+        En ValHui no solo obtienes un espacio: accedes a visibilidad, ubicación
+        privilegiada y servicios que te permiten operar sin complicaciones.
+      </h2>
     </div>
     <div class="spaces-rent__cards">
       {data.map((card) => <CardsRent {...card} />)}
@@ -87,27 +95,25 @@ const data = [
     @apply py-16;
   }
 
-  .spaces-rent__information{
+  .spaces-rent__information {
     @apply text-center mb-[60px];
   }
 
-  .spaces-rent__title{
+  .spaces-rent__title {
     @apply text-4xl text-[#0A0A0A] font-bold mb-4;
   }
 
-  .spaces-rent__subtitle{
+  .spaces-rent__subtitle {
     @apply text-lg text-[#717182] font-normal;
   }
 
-  .spaces-rent__cards{
+  .spaces-rent__cards {
     @apply grid grid-cols-1 lg:grid-cols-3 gap-6;
   }
 </style>
 
-
 <script>
   addEventListener("DOMContentLoaded", () => {
-
     const data = document.querySelector(".spaces-rent__information");
     const points = document.querySelectorAll(".spaces-rent__cards > *");
 
