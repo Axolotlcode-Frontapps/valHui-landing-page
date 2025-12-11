@@ -36,3 +36,21 @@ const { title, text, href } = Astro.props;
   }
 
 </style>
+
+<script>
+  addEventListener('DOMContentLoaded', () => {
+    const ctaAnim = document.querySelector('.home-cta__container');
+
+    (ctaAnim as HTMLElement).style.opacity = '0';
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry) return;
+        const isVisible = entry.isIntersecting;
+        isVisible && ctaAnim ? ctaAnim.classList.add('fadeIn') : null;
+      },
+      { threshold: 0 }
+    );
+    ctaAnim ? observer.observe(ctaAnim) : null;
+  });
+</script>

@@ -30,7 +30,7 @@ import Aisle from "@/assets/images/aisle.png";
       </div>
 
     </div>
-    <button class="rent__button">Descubra las opciones de alquiler</button>
+    <a class="rent__button" href="/">Descubra las opciones de alquiler</a>
   </div>
 </section>
 
@@ -56,5 +56,63 @@ import Aisle from "@/assets/images/aisle.png";
     }
     .rent__button {
       @apply bg-[#7148EC] md:col-span-2 w-fit rounded-xl text-white py-2.5 px-4 text-[14px] font-bold items-center mx-auto ;
+      @apply hover:scale-105 transition-transform duration-300 ease-in-out active:scale-95; 
     }
 </style>
+
+
+<script>
+  addEventListener("DOMContentLoaded", () => {
+
+    const image = document.querySelector(".image__rent");
+    const button = document.querySelector(".rent__button"); 
+
+    const rentIcons = document.querySelectorAll(".rent__icons > *");
+
+    (image as HTMLElement).style.opacity = "0";
+    (button as HTMLElement).style.opacity = "0";
+
+    rentIcons.forEach((item) => {
+      (item as HTMLElement).style.opacity = "0";
+    });
+
+    const imageObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry) return;
+        const isVisible = entry.isIntersecting;
+        isVisible && image ? image.classList.add("fadeIn") : null;
+      },
+      { threshold: 0 },
+    );
+    image && imageObserver.observe(image);
+
+    const buttonObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry) return;
+        const isVisible = entry.isIntersecting;
+        isVisible && button
+          ? button.classList.add("fadeIn")
+          : null;
+      },
+      { threshold: 0 },
+    );
+    button && buttonObserver.observe(button);
+
+    rentIcons.forEach((item, index) => {
+      const itemObserver = new IntersectionObserver(
+        ([entry]) => {
+          if (!entry) return;
+          const isVisible = entry.isIntersecting;
+          if (isVisible) {
+            setTimeout(() => {
+              item.classList.add("fadeInFromBottom");
+            }, index * 180);
+            itemObserver.unobserve(item);
+          }
+        },
+        { threshold: 0 },
+      );
+      itemObserver.observe(item);
+    });
+  });
+</script>

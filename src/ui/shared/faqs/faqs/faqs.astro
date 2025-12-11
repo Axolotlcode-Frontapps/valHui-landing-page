@@ -90,3 +90,56 @@ const data = [
     @apply flex flex-col divide-y divide-[#0000001A];
   }
 </style>
+
+
+<script>
+  addEventListener("DOMContentLoaded", () => {
+    const title = document.querySelector(".questions__title");
+    const description = document.querySelector(".questions__description");
+    const cards = document.querySelectorAll(".questions__accordions > *");
+
+    (title as HTMLElement).style.opacity = "0";
+    cards.forEach((item) => {
+      (item as HTMLElement).style.opacity = "0";
+    });
+
+    const titleObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry) return;
+        const isVisible = entry.isIntersecting;
+        isVisible && title ? title.classList.add("fadeInFromTop") : null;
+      },
+      { threshold: 0 },
+    );
+    title && titleObserver.observe(title);
+
+    const descriptionObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry) return;
+        const isVisible = entry.isIntersecting;
+        isVisible && description
+          ? description.classList.add("fadeInFromTop")
+          : null;
+      },
+      { threshold: 0 },
+    );
+    description && descriptionObserver.observe(description);
+
+    cards.forEach((item, index) => {
+      const itemObserver = new IntersectionObserver(
+        ([entry]) => {
+          if (!entry) return;
+          const isVisible = entry.isIntersecting;
+          if (isVisible) {
+            setTimeout(() => {
+              item.classList.add("fadeInFromBottom");
+            }, index * 180);
+            itemObserver.unobserve(item);
+          }
+        },
+        { threshold: 0 },
+      );
+      itemObserver.observe(item);
+    });
+  });
+</script>

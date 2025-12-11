@@ -109,7 +109,8 @@ const { contact_data, schedules_data } = Astro.props;
   }
 
   .find-us__button {
-    @apply w-full py-[14.5px] text-white text-center font-bold leading-5 bg-[#7148EC] rounded-xl border border-[#E5E7EB] drop-shadow-[0_4px_6px_0_rgba(0, 0, 0, 0.1)] mt-4;  
+    @apply w-full py-[14.5px] text-white text-center font-bold leading-5 bg-[#7148EC] rounded-xl border border-[#E5E7EB] drop-shadow-[0_4px_6px_0_rgba(0, 0, 0, 0.1)] mt-4;
+    @apply hover:scale-105 transition-transform duration-300 ease-in-out active:scale-95;  
   }
 
 
@@ -135,3 +136,119 @@ const { contact_data, schedules_data } = Astro.props;
   }
 
 </style>
+
+
+<script>
+  addEventListener("DOMContentLoaded", () => {
+
+    const map = document.querySelector(".find-us__content > iframe");
+    const title = document.querySelector(".find-us__title");
+    const description = document.querySelector(".find-us__text");
+
+    const contactTitle = document.querySelector(".find-us__contact__title");
+    const contactCards = document.querySelectorAll(".find-us__contact-cards > *");
+
+    const scheduleTitle = document.querySelector(".find-us__schedule__title");
+    const scheduleCards = document.querySelectorAll(".find-us__schedule-cards > *");
+
+    (map as HTMLElement).style.opacity = "0";
+    (title as HTMLElement).style.opacity = "0";
+    (description as HTMLElement).style.opacity = "0";
+
+    (contactTitle as HTMLElement).style.opacity = "0";
+    contactCards.forEach((item) => {
+      (item as HTMLElement).style.opacity = "0";
+    });
+
+    (scheduleTitle as HTMLElement).style.opacity = "0";
+    scheduleCards.forEach((item) => {
+      (item as HTMLElement).style.opacity = "0";
+    });
+
+    const mapObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry) return;
+        const isVisible = entry.isIntersecting;
+        isVisible && map ? map.classList.add("fadeIn") : null;
+      },
+      { threshold: 0 },
+    );
+    map && mapObserver.observe(map);
+
+    const titleObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry) return;
+        const isVisible = entry.isIntersecting;
+        isVisible && title ? title.classList.add("fadeInFromTop") : null;
+      },
+      { threshold: 0 },
+    );
+    title && titleObserver.observe(title);
+
+    const descriptionObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry) return;
+        const isVisible = entry.isIntersecting;
+        isVisible && description
+          ? description.classList.add("fadeInFromTop")
+          : null;
+      },
+      { threshold: 0 },
+    );
+    description && descriptionObserver.observe(description);
+
+    const contactTitleObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry) return;
+        const isVisible = entry.isIntersecting;
+        isVisible && contactTitle ? contactTitle.classList.add("fadeIn") : null;
+      },
+      { threshold: 0 },
+    );
+    contactTitle && contactTitleObserver.observe(contactTitle);
+
+    contactCards.forEach((item, index) => {
+      const itemObserver = new IntersectionObserver(
+        ([entry]) => {
+          if (!entry) return;
+          const isVisible = entry.isIntersecting;
+          if (isVisible) {
+            setTimeout(() => {
+              item.classList.add("fadeInFromBottom");
+            }, index * 180);
+            itemObserver.unobserve(item);
+          }
+        },
+        { threshold: 0 },
+      );
+      itemObserver.observe(item);
+    });
+
+    const scheduleTitleObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry) return;
+        const isVisible = entry.isIntersecting;
+        isVisible && scheduleTitle ? scheduleTitle.classList.add("fadeIn") : null;
+      },
+      { threshold: 0 },
+    );
+    scheduleTitle && scheduleTitleObserver.observe(scheduleTitle);
+
+    scheduleCards.forEach((item, index) => {
+      const itemObserver = new IntersectionObserver(
+        ([entry]) => {
+          if (!entry) return;
+          const isVisible = entry.isIntersecting;
+          if (isVisible) {
+            setTimeout(() => {
+              item.classList.add("fadeInFromBottom");
+            }, index * 180);
+            itemObserver.unobserve(item);
+          }
+        },
+        { threshold: 0 },
+      );
+      itemObserver.observe(item);
+    });
+  });
+</script>
