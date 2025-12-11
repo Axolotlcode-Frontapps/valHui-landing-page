@@ -1,0 +1,38 @@
+---
+interface Props {
+  title: string;
+  text: string;
+  href?: string;
+}
+
+const { title, text, href } = Astro.props;
+---
+
+<section class="section home-cta">
+    <div class="section__container home-cta__container">
+      <h2 class="home-cta__title">{title}</h2>
+      <p class="home-cta__text">{text}</p>
+      <a href={href ? href : "/spaces"} class="home-cta__link">Contactar</a>
+    </div>
+</section>
+
+<style>
+  @reference '@/ui/styles/global.css';
+
+  .home-cta {
+    @apply w-full py-[138px] bg-[#7148EC1A];
+  }
+  .home-cta__container {
+    @apply w-full bg-[url("../../../assets/images/BG.png")] bg-cover bg-center max-w-[1200px] rounded-[40px] flex flex-col items-center justify-center py-18 md:py-24;
+  }
+  .home-cta__title {
+    @apply text-4xl text-white leading-12 md:text-[52px] md:leading-[62px] text-center font-semibold tracking-[-2px] mb-[27px];
+  }
+  .home-cta__text {
+    @apply w-full max-w-[480px] text-white text-center mb-[49px];
+  }
+  .home-cta__link {
+    @apply w-full max-w-60 text-center block text-[#7148EC] text-sm font-bold bg-white rounded-xl leading-5 tracking-[-0.15px] py-3.5 hover:scale-105 transition-transform duration-300 ease-in-out active:scale-95 font-Nova;
+  }
+
+</style>
