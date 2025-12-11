@@ -1,1 +1,1 @@
-export { default as HomeExperience } from "./homeExperience.astro";
+export { default as HomeExperience } from "./home-experience.astro";
