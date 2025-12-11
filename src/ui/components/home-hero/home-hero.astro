@@ -1,61 +1,70 @@
 ---
 import { buttonVariants } from "@/ui/shared/button";
 
-import HomeHeroImage from "@/assets/images/hero-home.png";
+import Video from "@/assets/videos/valhui-video.mp4";
 ---
 
 <section class="section hero-home" id="home">
-  <div class="hero-home__overlay"></div>
-  <div class="section__container hero-home__container">
-    <div class="hero-home__info">
-      <h1 class="hero-home__title">Espacios que impulsan tu negocio</h1>
-      <p class="hero-home__description">
-        Tu espacio ideal te está esperando en Reforma. Renta con ValHui y accede
-        a oficinas, locales y terrazas diseñadas para crecer con soporte de
-        marketing y visibilidad garantizada.
-      </p>
-      <div class="hero-home__buttons">
-        <a
-          href="/#ubicación"
-          class={buttonVariants({
-            className: "h-12",
-          })}
-        >
-          Renta un espacio
-        </a>
-        <a
-          href="/#ubicación"
-          class={buttonVariants({
-            variant: "ghost",
-            className:
-              "h-12 bg-[#FFFFFF1A] hover:bg-white/30 border border-[#FFFFFF4D] hover:text-white",
-          })}
-        >
-          Agendar una visita
-        </a>
+  <video
+    width="100%"
+    height="100%"
+    autoplay
+    loop
+    muted
+    playsinline
+    class="hero-home__video "
+  >
+    <source src={Video} type="video/mp4" />
+  </video>
+  <div class="section section__container hero-home__container">
+      <div class="hero-home__info">
+        <h1 class="hero-home__title">Espacios que impulsan tu negocio</h1>
+        <p class="hero-home__description">
+          Tu espacio ideal te está esperando en Reforma. Renta con ValHui y accede
+          a oficinas, locales y terrazas diseñadas para crecer con soporte de
+          marketing y visibilidad garantizada.
+        </p>
+        <div class="hero-home__buttons">
+          <a
+            href="/#ubicación"
+            class={buttonVariants({
+              className: "h-12",
+            })}
+          >
+            Renta un espacio
+          </a>
+          <a
+            href="/#ubicación"
+            class={buttonVariants({
+              variant: "ghost",
+              className:
+                "h-12 bg-[#FFFFFF1A] hover:bg-white/30 border border-[#FFFFFF4D] hover:text-white",
+            })}
+          >
+            Agendar una visita
+          </a>
+        </div>
       </div>
     </div>
-  </div>
+  <!-- <div class="hero-home__overlay"></div> -->
 </section>
 
-<style
-  define:vars={{
-    bgImage: `url(${HomeHeroImage.src})`,
-  }}
->
+<style>
   @reference "@/ui/styles/global.css";
 
   .hero-home {
-    background-image: var(--bgImage);
-    @apply bg-cover bg-center relative;
+    @apply px-0 relative;
+  }
+  .hero-home__video {
+    @apply w-full aspect-9/16 md:aspect-video object-cover lg:max-h-[80dvh] ;
   }
 
   .hero-home__overlay {
-    @apply absolute inset-0 bg-linear-to-r from-black/20 via-black/15 to-black/10 z-0;
+    @apply absolute inset-0 bg-linear-to-r from-black/20 via-black/15 to-black/10 z-10;
   }
 
   .hero-home__container {
-    @apply min-h-[calc(100dvh-80px)] flex flex-col justify-center md:justify-end relative z-10;
+    @apply absolute z-0 inset-0 size-full py-22 md:py-24 ;
   }
 
   .hero-home__info {
