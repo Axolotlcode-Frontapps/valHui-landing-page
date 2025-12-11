@@ -12,6 +12,7 @@ const links = [
   { name: "Negocios", href: "/#negocios" },
   { name: "Experiencia", href: "/#experiencia" },
   { name: "Ubicación", href: "/#ubicación" },
+  { name: "Espacios", href: "/espacios" },
   { name: "FAQ", href: "/#faqs" },
   { name: "Contacto", href: "/#contacto" },
 ];
@@ -19,7 +20,7 @@ const links = [
 
 <header class="section header">
   <section class="section__container header__container">
-    <div class="min-w-[150px] flex">
+    <div class="xl:min-w-[150px] flex">
       <a href="/" class="max-w-12" title="Valhui | Inicio">
         <Image src={LogoApp} alt="ValHui Logo" class="size-12" />
         <span class="sr-only">ValHui - Home</span>
@@ -27,7 +28,12 @@ const links = [
     </div>
 
     <Navigation client:load {links}>
-      <a href="/#ubicación" class={cn(buttonVariants({ className: "font-bold h-12" }))}> Rentar un espacio </a>
+      <a
+        href="/#ubicación"
+        class={cn(buttonVariants({ className: "font-bold h-12" }))}
+      >
+        Rentar un espacio
+      </a>
     </Navigation>
   </section>
 </header>
@@ -40,6 +46,6 @@ const links = [
   }
 
   .header__container {
-    @apply h-20 flex justify-between items-center font-bold;
+    @apply h-20 flex justify-between items-center font-bold gap-4;
   }
 </style>

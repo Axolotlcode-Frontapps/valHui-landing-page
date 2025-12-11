@@ -52,7 +52,11 @@ export function Navigation({ links = [], children }: Props) {
 				<ul className='flex flex-col items-center gap-6 text-[#374151]'>
 					{links.map((link) => (
 						<li key={link.name}>
-							<a href={link.href} className='py-0.75 px-1.5'>
+							<a
+								href={link.href}
+								onClick={() => setOpen(false)}
+								className='py-0.75 px-1.5'
+							>
 								{link.name}
 							</a>
 						</li>
