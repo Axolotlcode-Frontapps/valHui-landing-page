@@ -1,43 +1,46 @@
-import type { ImageMetadata } from "astro";
 import { cn } from "@/lib/utils/shadcn";
+import { Button, buttonVariants } from "../button";
 
 interface Props {
 	title: string;
 	text: string;
-	image?: ImageMetadata;
+	image?: string;
 }
 
 export const ExperienceCard = ({ title, text, image }: Props) => {
 	return (
-		<div className='flex justify-center max-w-[400px] mx-[9px] max-h-[400px]'>
-			<div
-				className={cn(
-					"w-full flex flex-col rounded-2xl text-left sm:max-w-[405px] hover:scale-105 group transition-all duration-300 ease-in-out border border-[#DFDFDF] shadow bg-white",
-				)}
-			>
-				{image && (
-					<img
-						src={image.src}
-						alt={title}
-						className='w-full h-full object-cover rounded-t-2xl relative'
-					/>
-				)}
+		<article
+			className={cn(
+				"w-full max-w-[400px] flex flex-col rounded-2xl text-left hover:scale-100 group transition-all duration-300 ease-in-out border border-[#DFDFDF] shadow bg-white relative font-Nova",
+			)}
+		>
+			{image && (
+				<img
+					src={image}
+					alt={title}
+					className='w-full h-full object-cover rounded-t-2xl relative'
+				/>
+			)}
 
-				<div className='p-5 flex flex-col absolute inset-x-0 bottom-0'>
-					<h3 className='text-xl text-[#FFFFFF] lg:text-[32px] font-bold mb-3 justify-between'>
+			<div className='flex items-center gap-4 absolute inset-x-0 bottom-0 px-2 pb-3'>
+				<div className='text-white'>
+					<h3 className='text-xl font-bold leading-6.5 tracking-[0.37px] mb-2'>
 						{title}
 					</h3>
-
-					<p className='text-base mb-6 text-[#FFFFFF]'>{text}</p>
-
-					<button
-						type='button'
-						className='bg-[#FFFFFF] text-[#7148EC] px-4 py-2 rounded-lg w-fit text-sm font-semibold top-[632px] left-[684px]  p-2 gap-2 opacity-100 justify-end self-end'
-					>
-						Ver más
-					</button>
+					<p className='font-normal tracking-[-0.44px] leading-5'>{text}</p>
 				</div>
+
+				<a
+					href='/'
+					className={buttonVariants({
+						variant: "outline",
+						className:
+							"bg-[#FFFFFF] text-[#7148EC] hover:text-white rounded-lg mt-auto max-w-[70px]",
+					})}
+				>
+					Ver más
+				</a>
 			</div>
-		</div>
+		</article>
 	);
 };

@@ -1,0 +1,73 @@
+---
+import experienceFive from "@/assets/images/experienceFive.png";
+import experienceFour from "@/assets/images/experienceFour.png";
+import experienceOne from "@/assets/images/experienceOne.png";
+import experienceThree from "@/assets/images/experienceThree.png";
+import experienceTwo from "@/assets/images/experienceTwo.png";
+import { Carouselexperiences } from "@/ui/shared/carousel-cards";
+
+const data = [
+  {
+    title: "Local comercial",
+    text: "Renta locales en ValHui y únete a una comunidad comercial en crecimiento.",
+    image: experienceOne.src,
+  },
+  {
+    title: "Consultorios",
+    text: "Renta espacios médicos con ubicación estratégica y visibilidad.",
+    image: experienceTwo.src,
+  },
+  {
+    title: "Oficinas",
+    text: "Ofrecemos oficinas en renta para negocios que buscan imagen profesional, ubicación y conectividad.",
+    image: experienceThree.src,
+  },
+  {
+    title: "Terraza",
+    text: "Terrazas en renta ideales para experiencias al aire libre y eventos comerciales únicos.",
+    image: experienceFour.src,
+  },
+  {
+    title: "Restaurante",
+    text: "Locales en renta para restaurantes que buscan visibilidad, afluencia y una ubicación privilegiada.",
+    image: experienceFive.src,
+  },
+];
+---
+
+<section class="section home-experience">
+  <div class="section__container home-experience__container">
+    <div class="home-experience__info">
+      <h1 class="home-experience__title">
+        Locales en renta para cada tipo de negocio
+      </h1>
+      <p class="home-experience__text">
+        En ValHui encontrarás la renta ideal para tu negocio: locales
+        comerciales, consultorios, oficinas y terrazas en Reforma CDMX. Un
+        ecosistema activo que conecta marcas, servicios y personas todos los
+        días.
+      </p>
+    </div>
+    <Carouselexperiences client:load {data} />
+  </div>
+</section>
+
+<style>
+  @reference '@/ui/styles/global.css';
+
+  .home-experience {
+    @apply w-full bg-[#7148EC]/10 py-16 mt-10 lg:mt-20;
+  }
+
+  .home-experience__container {
+    @apply text-center;
+  }
+
+  .home-experience__title {
+    @apply text-center font-bold text-[#0A0A0A] text-4xl mb-4;
+  }
+
+  .home-experience__text {
+    @apply text-center text-gray-600 text-lg max-w-[900px] mx-auto mb-12;
+  }
+</style>

@@ -4,8 +4,6 @@ import {
 	CarouselContent,
 	CarouselDots,
 	CarouselItem,
-	CarouselNext,
-	CarouselPrevious,
 } from "@/ui/shared/carousel";
 import { ExperienceCard } from "@/ui/shared/experience-card";
 
@@ -13,8 +11,7 @@ interface Props {
 	data: {
 		title: string;
 		text: string;
-		image?: any;
-		icon?: any;
+		image?: string;
 	}[];
 }
 
@@ -31,11 +28,11 @@ export const Carouselexperiences = ({ data }: Props) => {
 					loop: true,
 				}}
 			>
-				<CarouselContent className='w-full ml-0 py-5 overflow-x-visible'>
+				<CarouselContent className='w-full -ml-7'>
 					{data.map((experience) => (
 						<CarouselItem
 							key={experience.title}
-							className='basis-full sm:basis-1/2 lg:basis-2/5  xl:basis-1/3 pl-0 flex max-w-[300px] md:max-w-[405px]  '
+							className='sm:basis-1/2 md:basis-1/2 lg:basis-1/3 pl-7'
 						>
 							<ExperienceCard
 								title={experience.title}
@@ -45,10 +42,9 @@ export const Carouselexperiences = ({ data }: Props) => {
 						</CarouselItem>
 					))}
 				</CarouselContent>
-				<div className='flex items-center justify-center gap-4 py-3 '>
-					<CarouselPrevious className='bg-transparent! border-0 shadow-none' />
-					<CarouselDots className='mt-0' totalSlides={data.length} />
-					<CarouselNext className='bg-transparent! border-0 shadow-none' />
+
+				<div className='w-fit mx-auto bg-white mt-10 flex items-center justify-center rounded-full shadow-md p-2'>
+					<CarouselDots totalSlides={data.length} />
 				</div>
 			</Carousel>
 		</div>

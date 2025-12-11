@@ -220,22 +220,42 @@ function CarouselDots({
 	className,
 	totalSlides,
 	...props
-}: React.ComponentProps<"div"> & { totalSlides: number }) {
+}: React.ComponentProps<"div"> & {
+	totalSlides: number;
+}) {
 	const { api } = useCarousel();
 	const [selectedIndex, setSelectedIndex] = React.useState(0);
+	const [visibleSlidesCount, setVisibleSlidesCount] = React.useState(1);
 
 	React.useEffect(() => {
 		if (!api) return;
 
-		const onSelect = () => {
-			setSelectedIndex(api.selectedScrollSnap());
+		const updateState = () => {
+			const currentIndex = api.selectedScrollSnap();
+
+			// Calcular cuántos slides caben en el viewport
+			const containerWidth = api.containerNode().offsetWidth;
+			const slideNodes = api.slideNodes();
+
+			if (slideNodes.length === 0) return;
+
+			const slideWidth = slideNodes[0].offsetWidth;
+			const slidesPerView = Math.floor(containerWidth / slideWidth);
+
+			setSelectedIndex(currentIndex);
+			setVisibleSlidesCount(slidesPerView);
 		};
 
-		api.on("select", onSelect);
-		onSelect();
+		updateState();
+
+		api.on("select", updateState);
+		api.on("reInit", updateState);
+		api.on("resize", updateState);
 
 		return () => {
-			api.off("select", onSelect);
+			api.off("select", updateState);
+			api.off("reInit", updateState);
+			api.off("resize", updateState);
 		};
 	}, [api]);
 
@@ -246,29 +266,34 @@ function CarouselDots({
 		[api],
 	);
 
+	const totalDotGroups = Math.ceil(totalSlides / visibleSlidesCount);
+	const currentDotGroup = Math.floor(selectedIndex / visibleSlidesCount);
+	const dotSize = 8;
+	const gapSize = 8;
+	const expandedWidth =
+		dotSize * visibleSlidesCount + gapSize * (visibleSlidesCount - 1);
+
 	return (
 		<div
-			className={cn(
-				"flex items-center justify-center space-x-2 mt-4",
-				className,
-			)}
+			className={cn("flex items-center justify-center gap-2", className)}
 			data-slot='carousel-dots'
 			{...props}
 		>
-			{Array.from({ length: totalSlides }).map((_, index) => {
-				const dotKey = `carousel-dot-${totalSlides}-${index}-${CarouselDots.name}`;
+			{Array.from({ length: totalDotGroups }).map((_, groupIndex) => {
+				const isActive = groupIndex === currentDotGroup;
+				const slideIndex = groupIndex * visibleSlidesCount;
+
 				return (
 					<button
-						key={dotKey}
+						key={`dot-group-${groupIndex}`}
 						type='button'
 						className={cn(
-							"size-2 rounded-full transition-all duration-200",
-							selectedIndex === index
-								? "bg-primary scale-125"
-								: "bg-[#999999] hover:bg-[#999999]/50",
+							"h-2 rounded-full transition-all duration-300",
+							isActive ? "bg-primary" : "bg-[#999999] hover:bg-[#999999]/50",
 						)}
-						onClick={() => scrollTo(index)}
-						aria-label={`Go to slide ${index + 1}`}
+						style={{ width: isActive ? `${expandedWidth}px` : "8px" }}
+						onClick={() => scrollTo(slideIndex)}
+						aria-label={`Go to slides ${slideIndex + 1} to ${Math.min(slideIndex + visibleSlidesCount, totalSlides)}`}
 					/>
 				);
 			})}
