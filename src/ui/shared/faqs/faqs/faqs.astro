@@ -1,0 +1,93 @@
+---
+import Coment from "@/assets/icons/coment.astro";
+import AccordionFaqs from "@/ui/shared/faqs/accordion-faqs/accordion-faqs.astro";
+
+const data = [
+  {
+    question: "¿Qué tipos de negocios pueden alquilar un espacio en ValHui?",
+    answer:
+      "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    ordered: false,
+    open: true,
+  },
+  {
+    question: "¿Cómo puedo alquilar un espacio para mi consultorio médico?",
+    answer:
+      "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    ordered: false,
+    open: false,
+  },
+  {
+    question: "¿Qué incluye el contrato de alquiler?",
+    answer:
+      "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    ordered: false,
+    open: false,
+  },
+  {
+    question: "¿Cuánto duran los contratos de alquiler?",
+    answer:
+      "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    ordered: false,
+    open: false,
+  },
+  {
+    question: "¿Ofrecen apoyo de marketing para inquilinos?",
+    answer:
+      "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    ordered: false,
+    open: false,
+  },
+  {
+    question: "¿Puedo organizar eventos en la terraza?",
+    answer:
+      "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    ordered: false,
+    open: false,
+  },
+  {
+    question:
+      "¿Cómo puedo agendar una visita para ver los espacios disponibles?",
+    answer:
+      "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    ordered: false,
+    open: false,
+  },
+];
+---
+
+<section class="section questions">
+  <div class="section__container questions__section">
+    <h2 class="questions__title">Preguntas Frecuentes</h2>
+
+    <p class="questions__description">
+      Encuentra aquí las respuestas a las consultas más frecuentes sobre
+      nuestros espacios en renta. ¿Tu duda no aparece? Contáctanos.
+    </p>
+    <div class="questions__accordions">
+      {data.map((item) => <AccordionFaqs {...item} />)}
+    </div>
+  </div>
+</section>
+
+<style>
+  @reference "@/ui/styles/global.css";
+  .questions {
+    @apply w-full text-[#101828] my-10 lg:mt-28 lg:mb-24;
+  }
+  .questions__section {
+    @apply w-full py-10 lg:grid grid-cols-1 max-w-4xl;
+  }
+
+  .questions__title {
+    @apply text-[36px] max-w-[1000px] mx-auto text-center leading-10 md:text-5xl md:leading-14 text-[#101828] lg:max-w-[800px] font-bold mt-3;
+  }
+
+  .questions__description {
+    @apply text-[16px] max-w-[600px] mx-auto text-center text-[#475467] mt-4 mb-10 lg:mb-16;
+  }
+
+  .questions__accordions {
+    @apply flex flex-col divide-y divide-[#717182];
+  }
+</style>
