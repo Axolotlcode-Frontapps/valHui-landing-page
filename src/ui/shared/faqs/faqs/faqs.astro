@@ -1,55 +1,54 @@
 ---
-import Coment from "@/assets/icons/coment.astro";
 import AccordionFaqs from "@/ui/shared/faqs/accordion-faqs/accordion-faqs.astro";
 
 const data = [
   {
-    question: "¿Qué tipos de negocios pueden alquilar un espacio en ValHui?",
+    question: "1. ¿Qué espacios puedo rentar en ValHui?",
     answer:
-      "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "Locales comerciales, oficinas, consultorios y terraza para eventos.",
     ordered: false,
     open: true,
   },
   {
-    question: "¿Cómo puedo alquilar un espacio para mi consultorio médico?",
+    question: "2. ¿ValHui solo renta espacios o también ofrece apoyo al negocio?",
     answer:
-      "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "Renta espacios y brinda apoyo en marketing, visibilidad y atracción de clientes.",
     ordered: false,
     open: false,
   },
   {
-    question: "¿Qué incluye el contrato de alquiler?",
+    question: "3. ¿Qué incluye la renta mensual?",
     answer:
-      "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "Limpieza, vigilancia 24/7, mantenimiento y uso de áreas comunes. No hay cuotas extras.",
     ordered: false,
     open: false,
   },
   {
-    question: "¿Cuánto duran los contratos de alquiler?",
+    question: "4. ¿Dónde está ubicado ValHui?",
     answer:
-      "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "En una zona estratégica de CDMX, a dos cuadras de Paseo de la Reforma.",
     ordered: false,
     open: false,
   },
   {
-    question: "¿Ofrecen apoyo de marketing para inquilinos?",
+    question: "5. ¿Qué requisitos necesito para rentar un espacio?",
     answer:
-      "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "Identificación, comprobante de domicilio, RFC (o en trámite), aval, mes de renta y depósito.",
     ordered: false,
     open: false,
   },
   {
-    question: "¿Puedo organizar eventos en la terraza?",
+    question: "6. ¿Puedo rentar si aún no tengo RFC?",
     answer:
-      "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "Sí. Tienes hasta 2 meses para entregarlo.",
     ordered: false,
     open: false,
   },
   {
     question:
-      "¿Cómo puedo agendar una visita para ver los espacios disponibles?",
+      "7. ¿Permiten cualquier tipo de negocio?",
     answer:
-      "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "Sí, siempre que esté relacionado con bienestar, salud, belleza o servicios compatibles con el concepto del centro.",
     ordered: false,
     open: false,
   },
@@ -80,14 +79,67 @@ const data = [
   }
 
   .questions__title {
-    @apply text-[36px] max-w-[1000px] mx-auto text-center leading-10 md:text-5xl md:leading-14 text-[#101828] lg:max-w-[800px] font-bold mt-3;
+    @apply text-[36px] max-w-[1000px] mx-auto text-center leading-10 md:text-5xl md:leading-14 text-[#0A0A0A] lg:max-w-[800px] font-bold mt-3 font-Nova;
   }
 
   .questions__description {
-    @apply text-[16px] max-w-[600px] mx-auto text-center text-[#475467] mt-4 mb-10 lg:mb-16;
+    @apply w-full text-lg max-w-[750px] mx-auto text-center text-[#475467] mt-4 mb-10 lg:mb-16 tracking-[-0.44px];
   }
 
   .questions__accordions {
-    @apply flex flex-col divide-y divide-[#717182];
+    @apply flex flex-col divide-y divide-[#0000001A];
   }
 </style>
+
+
+<script>
+  addEventListener("DOMContentLoaded", () => {
+    const title = document.querySelector(".questions__title");
+    const description = document.querySelector(".questions__description");
+    const cards = document.querySelectorAll(".questions__accordions > *");
+
+    (title as HTMLElement).style.opacity = "0";
+    cards.forEach((item) => {
+      (item as HTMLElement).style.opacity = "0";
+    });
+
+    const titleObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry) return;
+        const isVisible = entry.isIntersecting;
+        isVisible && title ? title.classList.add("fadeInFromTop") : null;
+      },
+      { threshold: 0 },
+    );
+    title && titleObserver.observe(title);
+
+    const descriptionObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry) return;
+        const isVisible = entry.isIntersecting;
+        isVisible && description
+          ? description.classList.add("fadeInFromTop")
+          : null;
+      },
+      { threshold: 0 },
+    );
+    description && descriptionObserver.observe(description);
+
+    cards.forEach((item, index) => {
+      const itemObserver = new IntersectionObserver(
+        ([entry]) => {
+          if (!entry) return;
+          const isVisible = entry.isIntersecting;
+          if (isVisible) {
+            setTimeout(() => {
+              item.classList.add("fadeInFromBottom");
+            }, index * 180);
+            itemObserver.unobserve(item);
+          }
+        },
+        { threshold: 0 },
+      );
+      itemObserver.observe(item);
+    });
+  });
+</script>
