@@ -39,11 +39,11 @@ export const getMoreLinks = () => [
 export const getContactLinks = () => [
 	{
 		link: "/#location",
-		label: "123 Main Avenue Downtown District City 12345",
+		label: "C. Río Lerma 296, Cuauhtémoc, 06500. Ciudad de México, CDMX",
 	},
 	{
-		link: "https://wa.link/",
-		label: "+1 (555) 123-4567",
+		link: "https://wa.me/525544776756",
+		label: "+52 55 4477 6756",
 	},
 	{
 		link: "mailto:info@valhui.com",
