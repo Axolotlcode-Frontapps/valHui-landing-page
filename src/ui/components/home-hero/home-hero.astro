@@ -2,6 +2,27 @@
 import { buttonVariants } from "@/ui/shared/button";
 
 import Video from "@/assets/videos/valhui-video.mp4";
+import FallbackImg from "@/assets/images/hero-home.png";
+
+const lineTexts = [
+  "Retail & Services",
+  "E-commerce",
+  "Food & Beverage",
+  "Healthcare",
+  "Education",
+  "Real Estate",
+  "Finance",
+  "Travel & Tourism",
+  "Beauty & Personal Care",
+  "Automotive",
+  "Technology",
+  "Entertainment",
+  "Fitness & Wellness",
+  "Home & Garden",
+  "Electronics",
+];
+
+const lineText = lineTexts.join("    •   ");
 ---
 
 <section class="section hero-home" id="home">
@@ -12,6 +33,8 @@ import Video from "@/assets/videos/valhui-video.mp4";
       autoplay
       loop
       muted
+      playsinline
+      poster={FallbackImg.src}
       class="hero-home__video"
     >
       <source src={Video} type="video/mp4" />
@@ -45,6 +68,13 @@ import Video from "@/assets/videos/valhui-video.mp4";
           Agendar una visita
         </a>
       </div>
+    </div>
+  </div>
+
+  <div class="hero-home__line">
+    <div class="hero-home__line-content">
+      <span>{lineText}</span>
+      <span>• {lineText}</span>
     </div>
   </div>
 </section>
@@ -83,6 +113,30 @@ import Video from "@/assets/videos/valhui-video.mp4";
 
   .hero-home__buttons {
     @apply flex flex-col md:flex-row gap-4;
+  }
+
+  .hero-home__line {
+    @apply absolute bottom-2.5 inset-x-0 w-full bg-[#FFFFFF1A] h-10.5 text-[#FFFFFF80] border-y border-[#FFFFFF33] flex items-center overflow-hidden;
+  }
+
+  .hero-home__line-content {
+    @apply flex items-center gap-0;
+    white-space: nowrap;
+    will-change: transform;
+    animation: hero-line-marquee 50s linear infinite;
+  }
+
+  .hero-home__line-content span {
+    @apply inline-block px-4;
+  }
+
+  @keyframes hero-line-marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
   }
 </style>
 
