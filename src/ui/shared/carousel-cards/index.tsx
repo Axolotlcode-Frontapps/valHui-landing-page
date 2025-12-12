@@ -20,11 +20,11 @@ export const Carouselexperiences = ({ data }: Props) => {
 	return (
 		<div className='relative'>
 			<Carousel
-				// plugins={[
-				// 	Autoplay({
-				// 		delay: 4000,
-				// 	}),
-				// ]}
+				plugins={[
+					Autoplay({
+						delay: 4000,
+					}),
+				]}
 				opts={{
 					loop: true,
 				}}
