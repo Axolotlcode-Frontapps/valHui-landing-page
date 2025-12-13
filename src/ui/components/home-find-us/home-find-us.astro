@@ -47,7 +47,11 @@ const { contact_data, schedules_data } = Astro.props;
           <div class="find-us__contact-cards">
             {contact_data.map((item) => <FindUsCard {...item} />)}
             <div>
-              <ContactModal client:visible />
+              <ContactModal
+                label="Contactar"
+                className="w-full"
+                client:visible
+              />
             </div>
           </div>
         </div>
@@ -137,8 +141,6 @@ const { contact_data, schedules_data } = Astro.props;
     const contactCards = document.querySelectorAll(
       ".find-us__contact-cards > *",
     );
-
-    console.log(contactCards);
 
     const scheduleTitle = document.querySelector(".find-us__schedule__title");
     const scheduleCards = document.querySelectorAll(

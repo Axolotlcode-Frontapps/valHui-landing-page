@@ -6,6 +6,7 @@ import { Button, buttonVariants } from "../button";
 
 import LogoApp from "@/assets/images/valhui.png";
 import { cn } from "@/lib/utils/shadcn";
+import { ContactModal } from "../contact-modal";
 
 const links = [
   { name: "Inicio", href: "/" },
@@ -27,12 +28,11 @@ const links = [
     </div>
 
     <Navigation client:load {links}>
-      <a
-        href="/#ubicación"
-        class={cn(buttonVariants({ className: "font-bold h-12" }))}
-      >
-        Rentar un espacio
-      </a>
+      <ContactModal
+        label="Agendar una visita"
+        className='font-bold"'
+        client:visible
+      />
     </Navigation>
   </section>
 </header>

@@ -28,44 +28,43 @@ import Aisle from "@/assets/images/aisle.png";
         <Focus class="icon" />
         <span>Soporte creativo</span>
       </div>
-
     </div>
-    <a class="rent__button" href="/">Descubra las opciones de alquiler</a>
+    <a class="rent__button" href="/espacios"
+      >Descubra las opciones de alquiler</a
+    >
   </div>
 </section>
 
 <style>
-    @reference "@/ui/styles/global.css";
+  @reference "@/ui/styles/global.css";
 
-    .rent {
-      @apply w-full bg-[#7148EC0D] ;
-    }
-    .rent__container {
-      @apply  gap-8 grid md:grid-cols-2 md:gap-10 items-center w-full max-w-[992px] py-10; 
-    }
+  .rent {
+    @apply w-full bg-[#7148EC0D];
+  }
+  .rent__container {
+    @apply gap-8 grid md:grid-cols-2 md:gap-10 items-center w-full max-w-[992px] py-10;
+  }
 
-    .image__rent {
-      @apply rounded-[10px] mask-size-[100%_100%] mx-auto  ; 
-    }
+  .image__rent {
+    @apply rounded-[10px] mask-size-[100%_100%] mx-auto;
+  }
 
-    .rent__item {
-      @apply flex items-center gap-7  rounded-xl py-2 px-4 font-bold text-[20px] ; 
-    }
-    .icon {
-      @apply w-7 h-7 fill-[#7148EC] ;
-    }
-    .rent__button {
-      @apply bg-[#7148EC] md:col-span-2 w-fit rounded-xl text-white py-2.5 px-4 text-[14px] font-bold items-center mx-auto ;
-      @apply hover:scale-105 transition-transform duration-300 ease-in-out active:scale-95; 
-    }
+  .rent__item {
+    @apply flex items-center gap-7  rounded-xl py-2 px-4 font-bold text-[20px];
+  }
+  .icon {
+    @apply w-7 h-7 fill-[#7148EC];
+  }
+  .rent__button {
+    @apply bg-[#7148EC] md:col-span-2 w-fit rounded-xl text-white py-2.5 px-4 text-[14px] font-bold items-center mx-auto;
+    @apply hover:scale-105 transition-transform duration-300 ease-in-out active:scale-95;
+  }
 </style>
-
 
 <script>
   addEventListener("DOMContentLoaded", () => {
-
     const image = document.querySelector(".image__rent");
-    const button = document.querySelector(".rent__button"); 
+    const button = document.querySelector(".rent__button");
 
     const rentIcons = document.querySelectorAll(".rent__icons > *");
 
@@ -90,9 +89,7 @@ import Aisle from "@/assets/images/aisle.png";
       ([entry]) => {
         if (!entry) return;
         const isVisible = entry.isIntersecting;
-        isVisible && button
-          ? button.classList.add("fadeIn")
-          : null;
+        isVisible && button ? button.classList.add("fadeIn") : null;
       },
       { threshold: 0 },
     );

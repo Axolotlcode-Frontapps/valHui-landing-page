@@ -3,6 +3,7 @@ import { buttonVariants } from "@/ui/shared/button";
 
 import Video from "@/assets/videos/valhui-video.mp4";
 import FallbackImg from "@/assets/images/hero-home.png";
+import { ContactModal } from "@/ui/shared/contact-modal";
 
 const lineTexts = [
   "Retail & Services",
@@ -49,24 +50,12 @@ const lineText = lineTexts.join("    •   ");
         soporte de marketing y visibilidad garantizada.
       </p>
       <div class="hero-home__buttons">
-        <a
-          href="/#ubicación"
-          class={buttonVariants({
-            className: "h-12",
-          })}
-        >
-          Renta un espacio
-        </a>
-        <a
-          href="/#ubicación"
-          class={buttonVariants({
-            variant: "ghost",
-            className:
-              "h-12 bg-[#FFFFFF1A] hover:bg-white/30 border border-[#FFFFFF4D] hover:text-white",
-          })}
-        >
-          Agendar una visita
-        </a>
+        <ContactModal label="Renta un espacio" client:visible />
+        <ContactModal
+          label="Agendar una visita"
+          className="bg-[#FFFFFF1A] hover:bg-white/30 border border-[#FFFFFF4D] hover:text-white"
+          client:visible
+        />
       </div>
     </div>
   </div>

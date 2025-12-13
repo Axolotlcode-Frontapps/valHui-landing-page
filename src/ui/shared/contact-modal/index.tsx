@@ -9,7 +9,12 @@ import {
 } from "../dialog";
 import { ContactForm } from "./form";
 
-export function ContactModal() {
+interface Props {
+	label: string;
+	className?: string;
+}
+
+export function ContactModal({ label = "Contactar", className }: Props) {
 	const [open, setOpen] = useState(false);
 
 	function onSuccess() {
@@ -19,8 +24,8 @@ export function ContactModal() {
 	return (
 		<Dialog open={open} onOpenChange={setOpen}>
 			<DialogTrigger asChild>
-				<Button className='find-us__button w-full h-12' type='button'>
-					Contactar
+				<Button className={`h-12 ${className}`} type='button'>
+					{label}
 				</Button>
 			</DialogTrigger>
 			<DialogContent className='min-w-[90vw] md:min-w-3xl'>
