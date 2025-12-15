@@ -53,7 +53,6 @@ export function ContactForm({ onSuccess }: ContactFormProps) {
 			onChange: contactSchema.contactFormSchema,
 		},
 		onSubmit: async ({ value }) => {
-			console.log(value);
 			await contact.sendMessage(value as ContactFormType);
 			toast.success("Datos enviados correctamente");
 			form.reset();

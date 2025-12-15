@@ -2,18 +2,18 @@
 import { ChevronDown } from "lucide-react";
 
 interface Props {
-  title: string;
-  items: {
-    label: string;
-    link?: string;
-    items?: {
-      label: string;
-      link: string;
-    }[];
-  }[];
-  wrapClass?: string;
-  class?: string;
-  linkClass?: string;
+	title: string;
+	items: {
+		label: string;
+		link?: string;
+		items?: {
+			label: string;
+			link: string;
+		}[];
+	}[];
+	wrapClass?: string;
+	class?: string;
+	linkClass?: string;
 }
 
 const { title, wrapClass, items, class: className } = Astro.props;
@@ -53,10 +53,10 @@ const { title, wrapClass, items, class: className } = Astro.props;
 <style>
   @reference "@/ui/styles/global.css";
   .links-list {
-    @apply w-full flex flex-col gap-4 max-w-[150px];
+    @apply w-full flex flex-col gap-4 max-w-[250px];
   }
   .links-list__title {
-    @apply text-base text-white! ;
+    @apply text-base text-white!;
   }
   .links-list__items {
     @apply w-full;

@@ -7,40 +7,32 @@ import ConsultoryTwoImage from "@/assets/images/consultory-two.png";
 import ConsultoryThreeImage from "@/assets/images/consultory-3.png";
 import LocalTwoImage from "@/assets/images/local-2.jpg";
 
-const gridData = [
-  {
-    title: "Consultorio",
-    href: "/spaces",
-    bg: ConsultoryImage,
-  },
-  {
-    title: "Terraza",
-    href: "/spaces",
-    bg: TerraceImage,
-  },
-  {
-    title: "Local comercial",
-    href: "/spaces",
-    bg: LocalImage,
-  },
-  {
-    title: "Consultorio",
-    href: "/spaces",
-    bg: ConsultoryTwoImage,
-  },
-  {
-    title: "Consultorio",
-    href: "/spaces",
-    bg: ConsultoryThreeImage,
-  },
-  {
-    title: "Local comercial",
-    href: "/spaces",
-    bg: LocalTwoImage,
-  },
+const cards: { title: GalleryImage; bg: string }[] = [
+	{
+		title: "Consultorio",
+		bg: ConsultoryImage.src,
+	},
+	{
+		title: "Oficina",
+		bg: TerraceImage.src,
+	},
+	{
+		title: "Local comercial",
+		bg: LocalImage.src,
+	},
+	{
+		title: "Consultorio",
+		bg: ConsultoryTwoImage.src,
+	},
+	{
+		title: "Consultorio",
+		bg: ConsultoryThreeImage.src,
+	},
+	{
+		title: "Local comercial",
+		bg: LocalTwoImage.src,
+	},
 ];
-
 ---
 
-<SpacesGrid cards={gridData} />
-
+<SpacesGrid {cards} />

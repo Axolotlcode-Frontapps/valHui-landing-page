@@ -1,9 +1,10 @@
 ---
 import BGImage from "@/assets/images/BG.png";
+import { ContactModal } from "@/ui/shared/contact-modal";
 interface Props {
-  title: string;
-  text: string;
-  href?: string;
+	title: string;
+	text: string;
+	href?: string;
 }
 
 const { title, text, href } = Astro.props;
@@ -13,7 +14,12 @@ const { title, text, href } = Astro.props;
   <div class="section__container home-cta__container">
     <h2 class="home-cta__title">{title}</h2>
     <p class="home-cta__text">{text}</p>
-    <a href={href ? href : "/#ubicación"} class="home-cta__link">Contactar</a>
+
+    <ContactModal
+      label="Contactar"
+      className="w-full max-w-60 text-center block text-[#7148EC] hover:text-white text-sm font-bold bg-white rounded-xl leading-5 tracking-[-0.15px] py-3.5 hover:scale-105 active:scale-95 font-Nova transition-colors duration-300 ease-in-out"
+      client:visible
+    />
   </div>
 </section>
 

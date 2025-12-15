@@ -7,15 +7,15 @@ import ClockIcon from "@/assets/icons/Icon (4).svg";
 import { ContactModal } from "@/ui/shared/contact-modal";
 
 interface Props {
-  contact_data: {
-    title: string;
-    text: string;
-    icon: ImageMetadata;
-  }[];
-  schedules_data: {
-    weekdays: string;
-    hours: string;
-  }[];
+	contact_data: {
+		title: string;
+		text: string;
+		icon: ImageMetadata;
+	}[];
+	schedules_data: {
+		weekdays: string;
+		hours: string;
+	}[];
 }
 
 const { contact_data, schedules_data } = Astro.props;
@@ -47,7 +47,11 @@ const { contact_data, schedules_data } = Astro.props;
           <div class="find-us__contact-cards">
             {contact_data.map((item) => <FindUsCard {...item} />)}
             <div>
-              <ContactModal client:visible />
+              <ContactModal
+                label="Contactar"
+                className="w-full"
+                client:visible
+              />
             </div>
           </div>
         </div>
@@ -137,8 +141,6 @@ const { contact_data, schedules_data } = Astro.props;
     const contactCards = document.querySelectorAll(
       ".find-us__contact-cards > *",
     );
-
-    console.log(contactCards);
 
     const scheduleTitle = document.querySelector(".find-us__schedule__title");
     const scheduleCards = document.querySelectorAll(

@@ -18,7 +18,7 @@ interface Props {
 
 export const Carouselexperiences = ({ data }: Props) => {
 	return (
-		<div className='relative'>
+		<div className='home-experience__carrousel'>
 			<Carousel
 				plugins={[
 					Autoplay({

@@ -3,23 +3,76 @@ import { buttonVariants } from "@/ui/shared/button";
 
 import Video from "@/assets/videos/valhui-video.mp4";
 import FallbackImg from "@/assets/images/hero-home.png";
+import { ContactModal } from "@/ui/shared/contact-modal";
 
 const lineTexts = [
-  "Retail & Services",
-  "E-commerce",
-  "Food & Beverage",
-  "Healthcare",
-  "Education",
-  "Real Estate",
-  "Finance",
-  "Travel & Tourism",
-  "Beauty & Personal Care",
-  "Automotive",
-  "Technology",
-  "Entertainment",
-  "Fitness & Wellness",
-  "Home & Garden",
-  "Electronics",
+	"3D Pestañas",
+	"Acupuntura",
+	"Aparatos auditivos",
+	"Aparatos médicos",
+	"Aparatos ortopédicos",
+	"Arreglo de ropa",
+	"Barbería hombre",
+	"Bronceado",
+	"Cámara hiperbárica",
+	"Cejas",
+	"Centro diabetes",
+	"Centro podológico",
+	"Centros auditivos",
+	"Acupuntura",
+	"Clínica antienvejecimiento",
+	"Clínica bariatría",
+	"Clínica dermatológica",
+	"Clínica nutrición",
+	"Dentista",
+	"Depilado",
+	"Equipos médicos",
+	"Estética",
+	"Extensiones o pelucas",
+	"Farmacia",
+	"Farmacia dermatológica",
+	"Farmacia homeopática",
+	"Fisioterapia",
+	"GNC",
+	"Laboratorio de análisis",
+	"Laboratorio especializado",
+	"Óptica",
+	"Oxígeno terapia",
+	"Pilates",
+	"Productos naturistas",
+	"Productos orgánicos",
+	"Productos ortopédicos",
+	"Productos para mascotas",
+	"Quiropráctico",
+	"Rehabilitación",
+	"Ropa deportiva",
+	"Ropa modeladora",
+	"Skin Care",
+	"Spa",
+	"Terapia de lenguaje",
+	"Tratamientos reductores",
+	"Uñas (Manicure y Pedicure)",
+	"Yoga",
+	"Zapatería Ortopédica",
+	"Cafetería Saludable",
+	"Escuela de Maquillaje",
+	"Heladería",
+	"Librería",
+	"Pan sin gluten",
+	"Pastelería",
+	"Comidas naturistas",
+	"Snacks",
+	"Súper naturista",
+	"Cafetería saludable",
+	"Escuela de maquillaje",
+	"Escuelas de pintura",
+	"Heladería",
+	"Pan sin gluten",
+	"Pastelería",
+	"Comidas naturistas",
+	"Snacks",
+	"Super naturista",
+	"Oficinas para empresas PyME",
 ];
 
 const lineText = lineTexts.join("    •   ");
@@ -45,28 +98,16 @@ const lineText = lineTexts.join("    •   ");
       <h1 class="hero-home__title">Espacios que impulsan tu negocio</h1>
       <p class="hero-home__description">
         Tu espacio ideal te está esperando en Reforma. Renta con ValHui y accede
-        a oficinas, locales y terrazas diseñadas para crecer con soporte de
-        marketing y visibilidad garantizada.
+        a oficinas, locales, consultorios y terrazas diseñadas para crecer con
+        soporte de marketing y visibilidad garantizada.
       </p>
       <div class="hero-home__buttons">
-        <a
-          href="/#ubicación"
-          class={buttonVariants({
-            className: "h-12",
-          })}
-        >
-          Renta un espacio
-        </a>
-        <a
-          href="/#ubicación"
-          class={buttonVariants({
-            variant: "ghost",
-            className:
-              "h-12 bg-[#FFFFFF1A] hover:bg-white/30 border border-[#FFFFFF4D] hover:text-white",
-          })}
-        >
-          Agendar una visita
-        </a>
+        <ContactModal label="Renta un espacio" client:visible />
+        <ContactModal
+          label="Agendar una visita"
+          className="bg-[#FFFFFF1A] hover:bg-white/30 border border-[#FFFFFF4D] hover:text-white"
+          client:visible
+        />
       </div>
     </div>
   </div>
@@ -122,7 +163,7 @@ const lineText = lineTexts.join("    •   ");
     @apply flex items-center gap-0;
     white-space: nowrap;
     will-change: transform;
-    animation: hero-line-marquee 50s linear infinite;
+    animation: hero-line-marquee 300s linear infinite;
   }
 
   .hero-home__line-content span {

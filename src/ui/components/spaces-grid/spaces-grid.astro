@@ -1,40 +1,45 @@
 ---
-import Image from 'astro/components/Image.astro'
-import ValHuiIcon from "@/assets/images/valhui.svg"
-import type { ImageMetadata } from 'astro';
+import Image from "astro/components/Image.astro";
+import ValHuiIcon from "@/assets/images/valhui.svg";
+import type { ImageMetadata } from "astro";
+import { Gallery } from "@/ui/shared/gallery";
 
 interface Props {
 	cards: {
-		title: string;
-		href: string;
-		bg: ImageMetadata;
+		title: GalleryImage;
+		bg: string;
 	}[];
-};
+}
 
 const { cards } = Astro.props;
 ---
 
-<section class="section grid-section" id="grid">
-    <div class="section__container grid-section__container">
-      <div class="grid-section__items">
-			{cards.map(({title, bg}, index) => (
-          <article class={`card card-${index + 1}`} >
-            <Image src={bg} alt={title} class="absolute object-cover object-center w-full h-full rounded-[5px] " />
-            <h4 class="card__title">{title}</h4>
-          </article>  
-        ))}
+<section class="section grid-section">
+	<div class="section__container grid-section__container">
+		<div class="grid-section__items">
+			{
+				cards.map(({ title, bg }, index) => (
+					<article class={`card card-${index + 1}`}>
+						<Gallery title={title} image={bg} client:load />
+						<h4 class="card__title">{title}</h4>
+					</article>
+				))
+			}
 			<div
 				class="card-7 cta-img hidden md:flex items-center justify-center rounded-2xl bg-[#7148EC1A] p-10 order-5 md:col-span-3"
 			>
-				<Image src={ValHuiIcon} alt="ValHui" class="valhui-image w-full h-full max-w-[200px]"/>
+				<Image
+					src={ValHuiIcon}
+					alt="ValHui"
+					class="valhui-image w-full h-full max-w-[200px]"
+				/>
 			</div>
 		</div>
-    </div>
+	</div>
 </section>
 
 <style>
-  @reference '@/ui/styles/global.css';
-
+	@reference '@/ui/styles/global.css';
 
 	.grid-section {
 		@apply w-full py-20 md:py-32;
@@ -42,11 +47,11 @@ const { cards } = Astro.props;
 	.grid-section__container {
 		@apply w-full max-w-[1260px] mx-auto;
 	}
-  .grid-section__items {
+	.grid-section__items {
 		@apply w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-7 md:grid-rows-3 gap-2 mt-10;
 	}
 	.card {
-		@apply w-full h-[300px] md:h-full p-8 rounded-2xl grid grid-cols-1 gap-4 justify-items-center relative ;
+		@apply w-full h-[300px] md:h-full p-8 rounded-2xl grid grid-cols-1 gap-4 justify-items-center relative;
 	}
 	.card__title {
 		@apply text-2xl leading-10 font-medium text-white absolute top-4 left-4;
@@ -69,33 +74,31 @@ const { cards } = Astro.props;
 	.card-6 {
 		@apply md:col-span-3 md:order-7;
 	}
-
 </style>
 
 <script>
-  addEventListener("DOMContentLoaded", () => {
+	addEventListener("DOMContentLoaded", () => {
+		const gridImages = document.querySelectorAll(".grid-section__items > *");
 
-    const gridImages = document.querySelectorAll(".grid-section__items > *");
-		
-    gridImages.forEach((item) => {
-      (item as HTMLElement).style.opacity = "0";
-    });
+		gridImages.forEach((item) => {
+			(item as HTMLElement).style.opacity = "0";
+		});
 
-    gridImages.forEach((item, index) => {
-      const itemObserver = new IntersectionObserver(
-        ([entry]) => {
-          if (!entry) return;
-          const isVisible = entry.isIntersecting;
-          if (isVisible) {
-            setTimeout(() => {
-              item.classList.add("fadeInFromBottom");
-            }, index * 180);
-            itemObserver.unobserve(item);
-          }
-        },
-        { threshold: 0 },
-      );
-      itemObserver.observe(item);
-    });
-  });
+		gridImages.forEach((item, index) => {
+			const itemObserver = new IntersectionObserver(
+				([entry]) => {
+					if (!entry) return;
+					const isVisible = entry.isIntersecting;
+					if (isVisible) {
+						setTimeout(() => {
+							item.classList.add("fadeInFromBottom");
+						}, index * 180);
+						itemObserver.unobserve(item);
+					}
+				},
+				{ threshold: 0 },
+			);
+			itemObserver.observe(item);
+		});
+	});
 </script>
