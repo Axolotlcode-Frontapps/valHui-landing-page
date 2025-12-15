@@ -1,7 +1,7 @@
 <img src="./src/assets/images/valhui.png" alt="Valhui" width="100">
 
 # Valhui Landing page
-Empresa encargada de proporcionar espacios comexrciales en renta en México
+Empresa encargada de proporcionar espacios comerciales en renta en México
 
 ## Requisitos
 - Node.js >= 22
