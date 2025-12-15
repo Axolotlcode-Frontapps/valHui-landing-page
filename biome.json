@@ -33,7 +33,7 @@
 	},
 	"formatter": {
 		"enabled": true,
-		"includes": ["src/**/*.{ts,tsx,css}"],
+		"includes": ["src/**/*.{ts,tsx,css,astro}"],
 		"formatWithErrors": false,
 		"attributePosition": "auto",
 		"indentStyle": "tab",

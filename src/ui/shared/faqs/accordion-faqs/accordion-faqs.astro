@@ -2,12 +2,12 @@
 import { ChevronDown } from "lucide-react";
 
 interface Props {
-  question: string;
-  answer: string;
-  name?: string;
-  id?: string;
-  open?: boolean;
-  ordered?: boolean;
+	question: string;
+	answer: string;
+	name?: string;
+	id?: string;
+	open?: boolean;
+	ordered?: boolean;
 }
 
 const { question, answer, name = "faqs", id, open, ordered } = Astro.props;

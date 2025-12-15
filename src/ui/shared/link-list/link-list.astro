@@ -2,18 +2,18 @@
 import { ChevronDown } from "lucide-react";
 
 interface Props {
-  title: string;
-  items: {
-    label: string;
-    link?: string;
-    items?: {
-      label: string;
-      link: string;
-    }[];
-  }[];
-  wrapClass?: string;
-  class?: string;
-  linkClass?: string;
+	title: string;
+	items: {
+		label: string;
+		link?: string;
+		items?: {
+			label: string;
+			link: string;
+		}[];
+	}[];
+	wrapClass?: string;
+	class?: string;
+	linkClass?: string;
 }
 
 const { title, wrapClass, items, class: className } = Astro.props;

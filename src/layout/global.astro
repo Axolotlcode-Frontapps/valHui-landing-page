@@ -7,15 +7,15 @@ import { Header } from "@/ui/shared/header";
 import { Toaster } from "@/ui/shared/sonner";
 
 interface Props {
-  title?: string;
-  description?: string;
+	title?: string;
+	description?: string;
 }
 
 const language = Astro.currentLocale ?? "es-MX";
 
 const {
-  title = config.brand,
-  description = "Plataforma líder en la renta de espacios comerciales y profesionales en México, conectando negocios con los lugares ideales para crecer.",
+	title = config.brand,
+	description = "Plataforma líder en la renta de espacios comerciales y profesionales en México, conectando negocios con los lugares ideales para crecer.",
 } = Astro.props;
 
 const seoTitle = title === config.brand ? title : `${title} | ${config.brand}`;
