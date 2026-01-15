@@ -8,17 +8,41 @@ import { HomeHero } from "@/ui/components/home-hero";
 import { HomeCtaData } from "@/ui/components/home-cta-data";
 import { HomeRentPorpuse } from "@/ui/components/home-rent-porpuse";
 import { HomeExperience } from "@/ui/components/home-experience";
+import WhatsAppIcon from "@/assets/icons/whatsapp.png";
 ---
 
 <Layout
-	title="ValHui - Renta de Oficinas, Locales Comerciales, Consultorios y Terraza en Reforma CDMX"
-	description="Encuentra espacios en renta para tu negocio en Plaza Rio Lerma, Ciudad de México: locales comerciales, oficinas, consultorios y terraza con visibilidad, apoyo en marketing y ubicación estratégica para crecer."
+  title="ValHui - Renta de Oficinas, Locales Comerciales, Consultorios y Terraza en Reforma CDMX"
+  description="Encuentra espacios en renta para tu negocio en Plaza Rio Lerma, Ciudad de México: locales comerciales, oficinas, consultorios y terraza con visibilidad, apoyo en marketing y ubicación estratégica para crecer."
 >
-	<HomeHero />
-	<HomeExperience />
-	<HomeRentPorpuse />
-	<HomeRent />
-	<HomeFindUsData />
-	<Faqs />
-	<HomeCtaData />
+  <HomeHero />
+  <a
+    href="http://wa.me/+525544776756"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    <img class="whatsapp" src={WhatsAppIcon.src} /></a
+  >
+  <HomeExperience />
+  <HomeRentPorpuse />
+  <HomeRent />
+  <HomeFindUsData />
+  <Faqs />
+  <HomeCtaData />
 </Layout>
+
+<style>
+  .whatsapp {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    z-index: 1000;
+    cursor: pointer;
+  }
+  .whatsapp:hover {
+    transform: scale(1.1);
+    transition: transform 0.3s ease-in-out;
+  }
+</style>
